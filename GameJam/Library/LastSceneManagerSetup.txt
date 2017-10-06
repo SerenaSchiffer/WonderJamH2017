@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/emile.unity
+- path: Assets/Scenes/nichzee.unity
   isLoaded: 1
   isActive: 1
