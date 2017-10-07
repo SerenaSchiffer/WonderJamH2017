@@ -72,6 +72,7 @@ public class PlayableHero : MonoBehaviour {
     }
 
     public void OnCollisionEnter2D(Collision2D collision) { currentState.HandleCollision(collision); }
+    public void OnCollisionStay2D(Collision2D collision) { currentState.HandleCollision(collision); }
 
     public virtual void Spell1()
     {
@@ -120,7 +121,7 @@ public class PlayerState
     public virtual void Enter() { } // Called once when entering current state
     public virtual void Execute() { } // Called once every update
     public virtual void Exit() { } // Called once to clean-up before entering the next state
-    public virtual void HandleCollision(Collision2D collision) { } // Called by Controller's OnCollisionEnter2D
+    public virtual void HandleCollision(Collision2D collision) { } // Called by Controller's OnCollisionEnter2D and OnCollisionStay2D
 }
 
 public class Idle : PlayerState
@@ -179,7 +180,7 @@ public class Jump : PlayerState
     {
         if (collision.gameObject.tag == "Ground")
         {
-            if (!backToPreviousState)
+            if (!backToPreviousState || previousState.ToString() == "IsWet")
             {
                 myController.ChangeState(new Idle(myController));
             }
@@ -374,7 +375,6 @@ public class IsWet : PlayerState
     public IsWet(PlayableHero master) : base(master) {}
     public override void Enter()
     {
-
     }
     public override void Execute()
     {
