@@ -155,6 +155,10 @@ public class Jump : PlayerState
     public override void Enter()  // Called once when entering current state
     {
         myController.rgb.AddForce(new Vector2(0, myController.jumpHeight), ForceMode2D.Force);
+        if (myController.rgb.velocity.y == 0)
+        {
+            myController.ChangeState(previousState);
+        }
     }
 
     public override void Execute()
@@ -175,7 +179,6 @@ public class Jump : PlayerState
     {
         if (collision.gameObject.tag == "Ground")
         {
-            Debug.Log("pepi :)");
             if (!backToPreviousState)
             {
                 myController.ChangeState(new Idle(myController));
@@ -345,7 +348,6 @@ public class Reversed : PlayerState
             }
             if (Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") != 0)
             {
-                Debug.Log("tas un osti de belle graine");
                 myController.rgb.velocity = new Vector2(Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") * myController.speed * -1, myController.rgb.velocity.y);
             }
             else
@@ -408,13 +410,13 @@ public class CastPower1 : PlayerState
 {
     bool backToPreviousState;
     PlayerState previousState;
-    float animTimer;
+    float animTimer = 2f;
 
     public CastPower1(PlayableHero master, PlayerState previousState) : base(master) { this.previousState = previousState;}
     public override void Enter()  // Called once when entering current state
     {
-        anim.SetTrigger("castSpell");
-        animTimer = anim.GetCurrentAnimatorStateInfo(0).length;
+        //anim.SetTrigger("castSpell");
+        //animTimer = anim.GetCurrentAnimatorStateInfo(0).length;
         myController.Spell1();
     }
 
@@ -422,7 +424,7 @@ public class CastPower1 : PlayerState
     {
         if (animTimer > 0)
         {
-            animTimer = Time.deltaTime;
+            animTimer -= Time.deltaTime;
         }
         else
         {
