@@ -10,11 +10,10 @@ public class SpiderManHero : PlayableHero
         base.Awake();
     }
 
-    protected override void Spell1()
+    public override void Spell1()
     {
         base.Spell1();
         
-
         
     }
 

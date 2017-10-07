@@ -73,7 +73,7 @@ public class PlayableHero : MonoBehaviour {
 
     public void OnCollisionEnter2D(Collision2D collision) { currentState.HandleCollision(collision); }
 
-    protected virtual void Spell1()
+    public virtual void Spell1()
     {
 
     }
