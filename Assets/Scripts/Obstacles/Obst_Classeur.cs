@@ -6,36 +6,33 @@ public class Obst_Classeur : MonoBehaviour {
     public float openingTime;
     float time = 0.00f;
     BoxCollider2D maBox;
+    bool switching;
 	// Use this for initialization
 	void Start () {
         maBox = gameObject.GetComponent<BoxCollider2D>();
+        switching = true;
 	}
 
     // Update is called once per frame
     void Update() {
-        if (time == openingTime)
+        if (time >= openingTime)
         {
-            while(time != 0)
-            {
-                time -= Time.deltaTime;
-
-                if (time < 0)
-                    time = 0;
-            }
-            
+            switching = false;
             maBox.enabled = false;
         }
-        else
+        if(time <= 0)
         {
-            while (time != openingTime)
-            {
-                time += Time.deltaTime;
-
-                if (time > openingTime)
-                    time = openingTime;
-            }
+            switching = true;
             maBox.enabled = true;
         }
-        
+
+        if(switching)
+        {
+            time += Time.deltaTime;
+        }
+        if(!switching)
+        {
+            time -= Time.deltaTime;
+        }
 	}
 }
