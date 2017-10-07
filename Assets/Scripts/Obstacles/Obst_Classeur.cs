@@ -4,35 +4,58 @@ using UnityEngine;
 
 public class Obst_Classeur : MonoBehaviour {
     public float openingTime;
+    public float speed;
     float time = 0.00f;
-    BoxCollider2D maBox;
+    Transform tiroirTransform;
     bool switching;
-	// Use this for initialization
-	void Start () {
-        maBox = gameObject.GetComponent<BoxCollider2D>();
+    Vector3 vec;
+    float distance;
+    // Use this for initialization
+    void Start () {
+        tiroirTransform = gameObject.GetComponent<Transform>().GetChild(0);
         switching = true;
-	}
+        vec = tiroirTransform.position;
+        distance = 0;
+    }
 
     // Update is called once per frame
     void Update() {
         if (time >= openingTime)
         {
             switching = false;
-            maBox.enabled = false;
+            distance = 0;
+            
+            
         }
         if(time <= 0)
         {
             switching = true;
-            maBox.enabled = true;
+            distance = 0;
+           
         }
 
         if(switching)
         {
             time += Time.deltaTime;
+            if (distance <= 0.21f)
+            {
+                distance += 0.01f * speed;
+                vec.x -= distance;
+                tiroirTransform.position = vec;
+            }
+                
+
         }
         if(!switching)
         {
             time -= Time.deltaTime;
+
+            if (distance <= 0.21f)
+            {
+                distance += 0.01f *speed;
+                vec.x += distance;
+                tiroirTransform.position = vec;
+            }
         }
 	}
 }
