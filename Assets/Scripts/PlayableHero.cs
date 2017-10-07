@@ -16,6 +16,7 @@ public class PlayableHero : MonoBehaviour {
     public float jumpHeight = 50f;
     public float impulseForce;
     public LayerMask ground;
+    public Transform spawn;
 
     public CurrentPlayer currentPlayer;
 
@@ -71,7 +72,14 @@ public class PlayableHero : MonoBehaviour {
         currentState.Enter();
     }
 
-    public void OnCollisionEnter2D(Collision2D collision) { currentState.HandleCollision(collision); }
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "KillingMachine")
+        {
+            SetKill();
+        }
+        currentState.HandleCollision(collision);
+    }
     public void OnCollisionStay2D(Collision2D collision) { currentState.HandleCollision(collision); }
 
     public virtual void Spell1()
@@ -123,6 +131,13 @@ public class PlayableHero : MonoBehaviour {
             previousState.Execute();
         }
     }
+
+
+    public void SetKill()
+    {
+        ChangeState(new Dying(this));
+    }
+
 }
 
 // Basic container for player states
@@ -447,4 +462,22 @@ public class CastPower1 : PlayerState
     }
 }
 
+public class Dying : PlayerState
+{
+    public Dying(PlayableHero master) : base(master) {}
+    public override void Enter()
+    {
+        //start death animation
+    }
+    public override void Execute()
+    {
+        //At the end of animation
+        myController.ChangeState(new Idle(myController));
+    }
+    public override void Exit()
+    {
+        myController.transform.position = myController.spawn.position;
+    }
+
+}
 //TODO isWetReversed
