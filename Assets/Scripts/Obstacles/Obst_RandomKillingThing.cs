@@ -8,12 +8,12 @@ public class Obst_RandomKillingThing : MonoBehaviour {
     BoxCollider2D theCollider;
     Vector3 initialPosition;
     Vector3 target;
-    public float repeatTime;
+    float repeatTime;
     bool isMoving = false;
 
     public float speed = 15.0f;
-    public float minTimeRespawn = 5.0f;
-    public float maxTimeRespawn = 20.0f;
+    public float minTimeRespawn = 15.0f;
+    public float maxTimeRespawn = 50.0f;
 
     // Use this for initialization
     void Start () {
