@@ -424,7 +424,7 @@ public class CastPower1 : PlayerState
 {
     bool backToPreviousState;
     PlayerState previousState;
-    float animTimer = 2f;
+    float animTimer = 0.25f;
 
     public CastPower1(PlayableHero master, PlayerState previousState) : base(master) { this.previousState = previousState;}
     public override void Enter()  // Called once when entering current state

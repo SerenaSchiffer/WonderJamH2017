@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpiderManHero : PlayableHero
 {
     public GameObject webPrefab;
-    public float webSpeed = 25;
+    public float webSpeed;
 
     GameObject[] players;
     GameObject othPlayer;
@@ -32,10 +32,19 @@ public class SpiderManHero : PlayableHero
         GameObject web = Instantiate(webPrefab);
 
         Vector3 thisPlayerPosition = transform.position;
-        thisPlayerPosition.x += 0.375f;
+        Vector3 velVector = othPlayer.transform.position - transform.position;
+        if (velVector.x >= 0)
+        {
+            thisPlayerPosition.x += 0.4f;
+        }
+        else
+        {
+            thisPlayerPosition.x -= 0.4f;
+        }
 
         web.transform.position = thisPlayerPosition;
-        web.GetComponent<Rigidbody2D>().velocity = (othPlayer.transform.position - transform.position) * webSpeed;
+        web.GetComponent<Web>().SetSpawnerName(name);
+        web.GetComponent<Rigidbody2D>().velocity = velVector * webSpeed;
     }
 
 }

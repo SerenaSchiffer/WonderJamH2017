@@ -21,7 +21,8 @@ GameObject:
   - component: {fileID: 4469299205570494}
   - component: {fileID: 212526934161108222}
   - component: {fileID: 50656187962820846}
-  - component: {fileID: 61064542643727358}
+  - component: {fileID: 114121692553885886}
+  - component: {fileID: 61600250636046544}
   m_Layer: 0
   m_Name: SnareWeb
   m_TagString: Untagged
@@ -36,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1109153058315894}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.03781161, y: -3.632412, z: 0}
+  m_LocalPosition: {x: -0.3531981, y: -3.7500775, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -62,7 +63,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61064542643727358
+--- !u!61 &61600250636046544
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -71,10 +72,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00089660287, y: 0.00089657307}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
     pivot: {x: 0.5, y: 0.5}
@@ -85,8 +86,19 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.13668844, y: 0.13668847}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.13439408, y: 0.13626766}
+  m_EdgeRadius: 0.001
+--- !u!114 &114121692553885886
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1109153058315894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c3b1031edbdc374ba22bc5f63c6df77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212526934161108222
 SpriteRenderer:
   m_ObjectHideFlags: 1
