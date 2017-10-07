@@ -379,7 +379,6 @@ public class Reversed : PlayerState
     }
     public override void Execute()
     {
-        
         if (debuffTimer > 0)
         {
             if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1"))
@@ -404,7 +403,6 @@ public class Reversed : PlayerState
         {
             myController.ChangeState(new Idle(myController));
         }
-
     }
     public override void Exit()
     {

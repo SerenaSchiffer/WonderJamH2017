@@ -30,11 +30,6 @@ public class Obst_FallingCeilingPiece : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-        if (coll.gameObject.tag == "Player")
-        {
-            //coll.GetComponent<PlayableHero>().Kill();
-            //Destroy(gameObject);
-        }
     }
 
     public void StartFalling()

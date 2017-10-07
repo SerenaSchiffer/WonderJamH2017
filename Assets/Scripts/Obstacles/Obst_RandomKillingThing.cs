@@ -45,17 +45,6 @@ public class Obst_RandomKillingThing : MonoBehaviour {
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            //other.GetComponent<PlayableHero>().Kill();
-            //
-            ///////TODO
-            //
-        }
-    }
-
     IEnumerator RepeatingFunction()
     {
         while (true)
