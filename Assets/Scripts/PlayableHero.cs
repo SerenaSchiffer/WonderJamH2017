@@ -160,11 +160,10 @@ public class Jump : PlayerState
     public override void Execute()
     {
         if (Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") != 0)
-            myController.rgb.velocity = new Vector2(Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") * myController.speed, myController.rgb.velocity.y);
+            myController.rgb.velocity = new Vector2(Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") * myController.speed / 2, myController.rgb.velocity.y);
         else
         {
             myController.rgb.velocity = new Vector2(0, myController.rgb.velocity.y);
-            myController.ChangeState(new Idle(myController));
         }
 
         if (backToPreviousState)
