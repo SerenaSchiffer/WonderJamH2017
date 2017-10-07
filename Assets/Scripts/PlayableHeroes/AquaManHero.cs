@@ -11,9 +11,7 @@ public class AquaManHero : PlayableHero {
 
     protected override void Spell1()
     {
-        base.Spell1();
-        
-
+        base.Spell1();        
         
     }
 }
