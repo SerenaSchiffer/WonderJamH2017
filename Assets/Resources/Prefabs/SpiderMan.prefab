@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 61295245647249788}
   - component: {fileID: 50506041304478470}
   - component: {fileID: 114664577691530142}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SpiderMan
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1830433102729842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.69, z: 0}
+  m_LocalPosition: {x: -8.29, y: -2.9873195, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -109,11 +109,12 @@ MonoBehaviour:
   impulseForce: 0
   ground:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   currentPlayer: 0
   rgb: {fileID: 0}
   playerBody: {fileID: 0}
   webPrefab: {fileID: 1109153058315894, guid: 1d9769b6c4550734bbd38b820c270e6a, type: 2}
+  webSpeed: 25
 --- !u!212 &212634022200704754
 SpriteRenderer:
   m_ObjectHideFlags: 1
