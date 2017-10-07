@@ -33,11 +33,11 @@ public class PlayableHero : MonoBehaviour {
 	// Update is called once per frame
 	public void Update () {
 
-        if (!isSnared || isSliding)
+        if (!isSnared)
         {
             if (Input.GetAxis(currentPlayer.ToString() + "Horizontal") != 0)
             {
-                if (!isSauced)
+                if (!isSauced ^ !isSliding)
                 {
                     rgb.velocity = new Vector2(Input.GetAxis(currentPlayer.ToString() + "Horizontal") * speed, rgb.velocity.y);
                 }
@@ -54,7 +54,7 @@ public class PlayableHero : MonoBehaviour {
                     }
                 }
             }
-            else if(!isSauced || isSliding)
+            else if(!isSauced ^ !isSliding)
             {
                 rgb.velocity = new Vector2(0, rgb.velocity.y);
             }
