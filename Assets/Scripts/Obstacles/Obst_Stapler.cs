@@ -32,7 +32,10 @@ public class Obst_Stapler : MonoBehaviour {
         vec.x = pos.position.x;
         vec.y = pos.position.y + 1;
         vec.z = pos.position.z;
+        Quaternion myRotation = pos.rotation;
+        myRotation.w = 15;
+        myRotation.z = 1;
 
-        Instantiate(bullet, vec, pos.rotation);
+        Instantiate(bullet, vec, myRotation);
     }
 }

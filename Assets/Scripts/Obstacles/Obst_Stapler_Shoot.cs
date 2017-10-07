@@ -10,9 +10,9 @@ public class Obst_Stapler_Shoot : MonoBehaviour {
 	void Start () {
         leBody = gameObject.GetComponent<Rigidbody2D>();
 
-        leBody.velocity = transform.up * speed;
+        leBody.AddForce(Vector2.up * speed);
 
-        Destroy(gameObject, 2);
+        Destroy(gameObject, 4);
     }
 	
 	// Update is called once per frame
