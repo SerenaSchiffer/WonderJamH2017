@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114099296324818102}
   - component: {fileID: 61193064151972126}
   - component: {fileID: 50642773064545994}
+  - component: {fileID: 95359039951434948}
   m_Layer: 9
   m_Name: Travailleur
   m_TagString: Travailleur
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1409849396033552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.79, y: -3.65, z: 0}
+  m_LocalPosition: {x: 0.56, y: 0.23, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -88,6 +89,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.29834092}
   m_EdgeRadius: 0
+--- !u!95 &95359039951434948
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1409849396033552}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 19bdae41d4766134abca7bba636fadec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114099296324818102
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -136,7 +154,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 425bcfe306d64204ebd3e29078580cca, type: 3}
+  m_Sprite: {fileID: 21300002, guid: eb78ba799a543df4bb4900ccbd337a97, type: 3}
   m_Color: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
   m_FlipX: 0
   m_FlipY: 0
