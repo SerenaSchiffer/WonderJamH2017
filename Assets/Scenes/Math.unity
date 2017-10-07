@@ -402,11 +402,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4440116347386672, guid: b24a548324aadc3468df6f27975b9c77, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5.09
+      value: -0.95
       objectReference: {fileID: 0}
     - target: {fileID: 4440116347386672, guid: b24a548324aadc3468df6f27975b9c77, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.7
+      value: -2.88
       objectReference: {fileID: 0}
     - target: {fileID: 4440116347386672, guid: b24a548324aadc3468df6f27975b9c77, type: 2}
       propertyPath: m_LocalPosition.z
@@ -430,16 +430,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4440116347386672, guid: b24a548324aadc3468df6f27975b9c77, type: 2}
       propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 60136198759637972, guid: b24a548324aadc3468df6f27975b9c77,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114461284701058866, guid: b24a548324aadc3468df6f27975b9c77,
-        type: 2}
-      propertyPath: cordLength
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
