@@ -84,6 +84,20 @@ public class PlayableHero : MonoBehaviour {
         ChangeState(new Snared(this, 2));
     }
 
+    public bool LookGround()
+    {
+        Vector2 position = transform.position;
+        Vector2 direction = Vector2.down;
+        float distance = 0.7f;
+        Debug.DrawRay(position, direction, Color.green);
+        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, ground);
+        if (hit.collider != null)
+        {
+            return true;
+        }
+        return false;
+    }
+
     public void Bump()
     {
         ChangeState(new Bumped(this, 1));
@@ -155,17 +169,17 @@ public class Jump : PlayerState
     public Jump(PlayableHero master, bool back, PlayerState previousState) : base(master) { backToPreviousState = back; this.previousState = previousState; this.debuffTimer = debuffTimer; }
     public override void Enter()  // Called once when entering current state
     {
-        myController.rgb.AddForce(new Vector2(0, myController.jumpHeight), ForceMode2D.Force);
-        if (myController.rgb.velocity.y == 0)
+        Debug.Log(myController.LookGround());
+        if (myController.LookGround())
         {
-            myController.ChangeState(previousState);
+            myController.rgb.AddForce(new Vector2(0, myController.jumpHeight), ForceMode2D.Force);
         }
     }
 
     public override void Execute()
     {
         if (Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") != 0)
-            myController.rgb.velocity = new Vector2(Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") * myController.speed, myController.rgb.velocity.y);
+            myController.rgb.velocity = new Vector2(Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") * myController.speed, myController.rgb.velocity.y); 
         else
         {
             myController.rgb.velocity = new Vector2(0, myController.rgb.velocity.y);
