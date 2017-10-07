@@ -7,11 +7,10 @@ public class Obst_FallingCeilingPiece : MonoBehaviour {
 
     SpriteRenderer sprite;
     BoxCollider2D theCollider;
-    Vector3 target;
-    public bool alwaysVisible = false;
-    bool isFalling = false;
 
-    public float speed = 15.0f;
+    public bool alwaysVisible = false;
+    public float gravityScaleFalling = 1.0f;
+    
 
     // Use this for initialization
     void Start () {
@@ -19,29 +18,22 @@ public class Obst_FallingCeilingPiece : MonoBehaviour {
         sprite.enabled = alwaysVisible;
         theCollider = GetComponent<BoxCollider2D>();
         theCollider.enabled = false;
-        target = transform.position;
-        target.y = 0;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (isFalling)
-        {
-            float step = speed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, target, step);
-        }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D coll)
     {
-        if (other.gameObject.tag == "Player")
+        if (coll.gameObject.tag == "Ground")
         {
-            //other.GetComponent<PlayableHero>().Kill();
             Destroy(gameObject);
         }
-        else if(other.gameObject.tag == "Ground")
+        if (coll.gameObject.tag == "Player")
         {
-            Destroy(gameObject);
+            //coll.GetComponent<PlayableHero>().Kill();
+            //Destroy(gameObject);
         }
     }
 
@@ -49,6 +41,6 @@ public class Obst_FallingCeilingPiece : MonoBehaviour {
     {
         sprite.enabled = true;
         theCollider.enabled = true;
-        isFalling = true;
+        GetComponent<Rigidbody2D>().gravityScale = gravityScaleFalling;
     }
 }
