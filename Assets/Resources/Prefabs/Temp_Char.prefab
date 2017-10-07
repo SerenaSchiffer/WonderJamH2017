@@ -38,13 +38,13 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4276612595854948}
-  - component: {fileID: 114234806188974940}
   - component: {fileID: 212831776370534514}
   - component: {fileID: 61347837437537482}
   - component: {fileID: 50480537703375878}
+  - component: {fileID: 114375774172195482}
   m_Layer: 0
   m_Name: Temp_Char
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,8 +56,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1509625127569102}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0032538753, y: 0.7874409, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
   - {fileID: 4844639509253794}
   m_Father: {fileID: 0}
@@ -166,7 +166,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.14271283, y: 0.13464549}
   m_EdgeRadius: 0
---- !u!114 &114234806188974940
+--- !u!114 &114375774172195482
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -174,11 +174,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1509625127569102}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24e672cae4e013946bf7ead253318e3b, type: 3}
+  m_Script: {fileID: 11500000, guid: 3624370d9270b7f4b835f729a7b16b9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  jumpheight: 300
+  isSnared: 0
+  isBumped: 0
+  isSauced: 0
+  isRiversed: 0
+  isSliding: 0
+  speed: 5
+  jumpHeight: 50
+  currentPlayer: 1
 --- !u!114 &114492399646936016
 MonoBehaviour:
   m_ObjectHideFlags: 1

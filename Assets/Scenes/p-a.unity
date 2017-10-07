@@ -117,11 +117,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4442921683727986, guid: faa939f010727f9498122393f43b1d78, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -3.8110614
+      value: -3.4453
       objectReference: {fileID: 0}
     - target: {fileID: 4442921683727986, guid: faa939f010727f9498122393f43b1d78, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.0263908
+      value: -0.29354
       objectReference: {fileID: 0}
     - target: {fileID: 4442921683727986, guid: faa939f010727f9498122393f43b1d78, type: 2}
       propertyPath: m_LocalPosition.z
@@ -146,6 +146,23 @@ Prefab:
     - target: {fileID: 4442921683727986, guid: faa939f010727f9498122393f43b1d78, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114664577691530142, guid: faa939f010727f9498122393f43b1d78,
+        type: 2}
+      propertyPath: currentPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4442921683727986, guid: faa939f010727f9498122393f43b1d78, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2.6705766
+      objectReference: {fileID: 0}
+    - target: {fileID: 4442921683727986, guid: faa939f010727f9498122393f43b1d78, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 2.6705763
+      objectReference: {fileID: 0}
+    - target: {fileID: 4442921683727986, guid: faa939f010727f9498122393f43b1d78, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 2.6705763
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: faa939f010727f9498122393f43b1d78, type: 2}
@@ -241,8 +258,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1129098090}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.03, y: -1.58, z: 0}
-  m_LocalScale: {x: 3.000001, y: 0.37499997, z: 1}
+  m_LocalPosition: {x: -4.03, y: -1.772, z: 0}
+  m_LocalScale: {x: 8.011732, y: 1.001466, z: 2.6705763}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -309,6 +326,7 @@ MonoBehaviour:
   isBumped: 0
   isSauced: 0
   isRiversed: 0
+  isSliding: 0
   speed: 5
   jumpHeight: 50
   currentPlayer: 0

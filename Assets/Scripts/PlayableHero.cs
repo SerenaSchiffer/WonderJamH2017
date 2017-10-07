@@ -10,7 +10,7 @@ public enum CurrentPlayer
 
 public class PlayableHero : MonoBehaviour {
 
-    public bool isSnared, isBumped, isSauced, isRiversed;
+    public bool isSnared, isBumped, isSauced, isRiversed, isSliding;
     public float speed = 5f;
     public float jumpHeight = 50f;
 
@@ -35,24 +35,28 @@ public class PlayableHero : MonoBehaviour {
 
         if (!isSnared)
         {
-
-            if (!isSauced)
+            if (Input.GetAxis(currentPlayer.ToString() + "Horizontal") != 0)
             {
-                if (Input.GetAxis(currentPlayer.ToString() + "Horizontal") != 0)
+                if (!isSauced ^ !isSliding)
+                {
                     rgb.velocity = new Vector2(Input.GetAxis(currentPlayer.ToString() + "Horizontal") * speed, rgb.velocity.y);
+                }
+                else
+                {
+                    rgb.AddForce(new Vector2(Input.GetAxis(currentPlayer.ToString() + "Horizontal") * 10, rgb.velocity.y));
+                    if (rgb.velocity.x > speed)
+                    {
+                        rgb.velocity = new Vector2(speed, rgb.velocity.y);
+                    }
+                    else if (rgb.velocity.x < -speed)
+                    {
+                        rgb.velocity = new Vector2(-speed, rgb.velocity.y);
+                    }
+                }
             }
-            else
+            else if(!isSauced ^ !isSliding)
             {
-                if (Input.GetAxis(currentPlayer.ToString() + "Horizontal") != 0)
-                    rgb.AddForce(new Vector2(Input.GetAxis(currentPlayer.ToString() + "Horizontal"), rgb.velocity.y));
-                if(rgb.velocity.x > speed)
-                {
-                    rgb.velocity = new Vector2(speed, rgb.velocity.y);
-                }
-                else if(rgb.velocity.x < -speed)
-                {
-                    rgb.velocity = new Vector2(-speed, rgb.velocity.y);
-                }
+                rgb.velocity = new Vector2(0, rgb.velocity.y);
             }
 
             if (Input.GetButtonDown(currentPlayer.ToString() + "Jump"))
@@ -105,5 +109,10 @@ public class PlayableHero : MonoBehaviour {
     public void Reserve()
     {
 
+    }
+
+    public void SetSliding(bool value)
+    {
+        isSliding = value;
     }
 }
