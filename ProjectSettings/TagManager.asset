@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - under
+  - Travailleur
+  - travailleurLimit
   layers:
   - Default
   - TransparentFX
@@ -14,11 +17,19 @@ TagManager:
   - UI
   - 
   - 
+<<<<<<< HEAD
   - 
   - 
   - 
   - 
   - 
+=======
+  - Ground
+  - Travailleur
+  - LimitTravailleur
+  - Staple
+  - Player
+>>>>>>> fe122175585ff26a84e44ac30e35de11aab4d422
   - 
   - 
   - 

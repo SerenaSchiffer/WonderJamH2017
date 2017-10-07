@@ -8,7 +8,6 @@ public class Obst_Stapler : MonoBehaviour {
     public float shootingRate;
     Transform pos;
     float time;
-    bool switching;
 	// Use this for initialization
 	void Start () {
         pos = gameObject.GetComponent<Transform>();
@@ -33,7 +32,10 @@ public class Obst_Stapler : MonoBehaviour {
         vec.x = pos.position.x;
         vec.y = pos.position.y + 1;
         vec.z = pos.position.z;
+        Quaternion myRotation = pos.rotation;
+        myRotation.w = 15;
+        myRotation.z = 1;
 
-        Instantiate(bullet, vec, pos.rotation);
+        Instantiate(bullet, vec, myRotation);
     }
 }

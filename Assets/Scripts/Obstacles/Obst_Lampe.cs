@@ -4,37 +4,66 @@ using UnityEngine;
 
 public class Obst_Lampe : MonoBehaviour {
 
-
-    Transform leTrans;
-    bool switchSide;
+    public float cordLength;
     public int maxSpeed;
-	// Use this for initialization
-	void Start () {
-        leTrans = gameObject.GetComponent<Transform>();
+    Transform leTransPivot;
+    Transform leTransLamp;
+    bool switchSide;
+    BoxCollider2D lampBox;
+    LineRenderer lampCord;
+    Vector3 vecDebutCord;
+    Vector3 vecFinCord;
+    Vector3 vecCord;
+    // Use this for initialization
+    void Start() {
+        leTransPivot = gameObject.GetComponent<Transform>().GetChild(1);
+        leTransLamp = gameObject.GetComponent<Transform>();
+        
+        lampBox = gameObject.GetComponent<BoxCollider2D>();
+        lampCord = gameObject.GetComponent<LineRenderer>();
+    
         switchSide = true;
-	}
+        
+        
+
+        vecDebutCord = lampBox.bounds.center;
+        vecCord = new Vector3(0,cordLength);
+        vecFinCord = vecDebutCord + vecCord;
+        lampCord.SetPosition(1, vecFinCord);
+        
+        leTransPivot.position = vecFinCord;
+        Debug.Log(vecDebutCord);
+        Debug.Log(vecFinCord);
+        Debug.Log(leTransPivot.position);
+        
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        float x = leTrans.localEulerAngles.z;
-        //GAUCHE -0.4
-        //DROIT 0.4
+        //GAUCHE -0.4 (-45deg)
+        //DROIT 0.4 (45deg)
 
-        if(leTrans.rotation.z <= -0.4)
+        vecDebutCord = lampBox.bounds.center;
+        lampCord.SetPosition(0, vecDebutCord);
+
+        if (leTransPivot.rotation.z <= -0.4)
         {
             switchSide = true;
             //VERS LA DROITE
         }
-        if (leTrans.rotation.z >= 0.4)
+        if (leTransPivot.rotation.z >= 0.4)
         {
             switchSide = false;
             //VERS LA GAUCHE
         }
 
-        if(switchSide)
-            leTrans.Rotate(0, 0, Time.deltaTime * (maxSpeed / (Mathf.Abs(leTrans.rotation.z)*(maxSpeed/10) + 1)));
+        if (switchSide)
+            leTransLamp.RotateAround(leTransPivot.position,Vector3.forward, Time.deltaTime * (maxSpeed / (Mathf.Abs(leTransPivot.rotation.z) * (maxSpeed / 10) + 1)));
         if(!switchSide)
-            leTrans.Rotate(0, 0, -Time.deltaTime * (maxSpeed / (Mathf.Abs(leTrans.rotation.z)*(maxSpeed/10) + 1)));
+            leTransLamp.RotateAround(leTransPivot.position, Vector3.forward, - Time.deltaTime * (maxSpeed / (Mathf.Abs(leTransPivot.rotation.z) * (maxSpeed / 10) + 1)));
+
+        
 
         //0.4 = 45;
         //0 = 1;

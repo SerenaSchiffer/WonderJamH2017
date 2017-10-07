@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 201946917}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -218,7 +218,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4442921683727986, guid: faa939f010727f9498122393f43b1d78, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -4.22
+      value: -4.04
       objectReference: {fileID: 0}
     - target: {fileID: 4442921683727986, guid: faa939f010727f9498122393f43b1d78, type: 2}
       propertyPath: m_LocalPosition.z
@@ -269,7 +269,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4442921683727986, guid: faa939f010727f9498122393f43b1d78, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -4.231
+      value: -4.03
       objectReference: {fileID: 0}
     - target: {fileID: 4442921683727986, guid: faa939f010727f9498122393f43b1d78, type: 2}
       propertyPath: m_LocalPosition.z
@@ -294,6 +294,16 @@ Prefab:
     - target: {fileID: 4442921683727986, guid: faa939f010727f9498122393f43b1d78, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114664577691530142, guid: faa939f010727f9498122393f43b1d78,
+        type: 2}
+      propertyPath: currentPlayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114664577691530142, guid: faa939f010727f9498122393f43b1d78,
+        type: 2}
+      propertyPath: ground.m_Bits
+      value: 256
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: faa939f010727f9498122393f43b1d78, type: 2}

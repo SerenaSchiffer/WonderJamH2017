@@ -72,6 +72,7 @@ public class PlayableHero : MonoBehaviour {
     }
 
     public void OnCollisionEnter2D(Collision2D collision) { currentState.HandleCollision(collision); }
+    public void OnCollisionStay2D(Collision2D collision) { currentState.HandleCollision(collision); }
 
     public virtual void Spell1()
     {
@@ -81,6 +82,20 @@ public class PlayableHero : MonoBehaviour {
     public void Snare()
     {
         ChangeState(new Snared(this, 2));
+    }
+
+    public bool LookGround()
+    {
+        Vector2 position = transform.position;
+        Vector2 direction = Vector2.down;
+        float distance = 0.7f;
+        Debug.DrawRay(position, direction, Color.green);
+        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, ground);
+        if (hit.collider != null)
+        {
+            return true;
+        }
+        return false;
     }
 
     public void Bump()
@@ -120,7 +135,7 @@ public class PlayerState
     public virtual void Enter() { } // Called once when entering current state
     public virtual void Execute() { } // Called once every update
     public virtual void Exit() { } // Called once to clean-up before entering the next state
-    public virtual void HandleCollision(Collision2D collision) { } // Called by Controller's OnCollisionEnter2D
+    public virtual void HandleCollision(Collision2D collision) { } // Called by Controller's OnCollisionEnter2D and OnCollisionStay2D
 }
 
 public class Idle : PlayerState
@@ -154,13 +169,17 @@ public class Jump : PlayerState
     public Jump(PlayableHero master, bool back, PlayerState previousState) : base(master) { backToPreviousState = back; this.previousState = previousState; this.debuffTimer = debuffTimer; }
     public override void Enter()  // Called once when entering current state
     {
-        myController.rgb.AddForce(new Vector2(0, myController.jumpHeight), ForceMode2D.Force);
+        Debug.Log(myController.LookGround());
+        if (myController.LookGround())
+        {
+            myController.rgb.AddForce(new Vector2(0, myController.jumpHeight), ForceMode2D.Force);
+        }
     }
 
     public override void Execute()
     {
         if (Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") != 0)
-            myController.rgb.velocity = new Vector2(Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") * myController.speed, myController.rgb.velocity.y);
+            myController.rgb.velocity = new Vector2(Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") * myController.speed, myController.rgb.velocity.y); 
         else
         {
             myController.rgb.velocity = new Vector2(0, myController.rgb.velocity.y);
@@ -175,8 +194,7 @@ public class Jump : PlayerState
     {
         if (collision.gameObject.tag == "Ground")
         {
-            Debug.Log("pepi :)");
-            if (!backToPreviousState)
+            if (!backToPreviousState || previousState.ToString() == "IsWet")
             {
                 myController.ChangeState(new Idle(myController));
             }
@@ -345,7 +363,6 @@ public class Reversed : PlayerState
             }
             if (Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") != 0)
             {
-                Debug.Log("tas un osti de belle graine");
                 myController.rgb.velocity = new Vector2(Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") * myController.speed * -1, myController.rgb.velocity.y);
             }
             else
@@ -372,7 +389,6 @@ public class IsWet : PlayerState
     public IsWet(PlayableHero master) : base(master) {}
     public override void Enter()
     {
-
     }
     public override void Execute()
     {
@@ -408,13 +424,13 @@ public class CastPower1 : PlayerState
 {
     bool backToPreviousState;
     PlayerState previousState;
-    float animTimer;
+    float animTimer = 2f;
 
     public CastPower1(PlayableHero master, PlayerState previousState) : base(master) { this.previousState = previousState;}
     public override void Enter()  // Called once when entering current state
     {
-        anim.SetTrigger("castSpell");
-        animTimer = anim.GetCurrentAnimatorStateInfo(0).length;
+        //anim.SetTrigger("castSpell");
+        //animTimer = anim.GetCurrentAnimatorStateInfo(0).length;
         myController.Spell1();
     }
 
@@ -422,7 +438,7 @@ public class CastPower1 : PlayerState
     {
         if (animTimer > 0)
         {
-            animTimer = Time.deltaTime;
+            animTimer -= Time.deltaTime;
         }
         else
         {

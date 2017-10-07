@@ -27,6 +27,7 @@ public class Obst_Classeur : MonoBehaviour {
         //target =tiroirTransform.position.x- tiroirWidth*transform.parent.localScale.x;
         targetOpen = tiroirTransform.position.x - 1 / tiroirTransform.localScale.x ;
         targetClose = tiroirTransform.position.x;
+
     }
 
     // Update is called once per frame
@@ -55,7 +56,7 @@ public class Obst_Classeur : MonoBehaviour {
                     distance =0.01f * speed;
                     if(vec.x >targetOpen)
                     {
-                        vec.x = Mathf.MoveTowards(vec.x, -targetOpen, distance);
+                        vec.x = Mathf.MoveTowards(vec.x, targetOpen, distance);
                         tiroirTransform.position = vec;
                     }
                        
