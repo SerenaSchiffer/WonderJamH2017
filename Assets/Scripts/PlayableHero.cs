@@ -10,13 +10,16 @@ public enum CurrentPlayer
 
 public class PlayableHero : MonoBehaviour {
 
-    public bool isSnared, isBumped, isSauced, isRiversed, isSliding;
+    public bool isSnared, isSauced, isReversed, isSliding, isBumped;
+    int direction = 1;
     public float speed = 5f;
     public float jumpHeight = 50f;
+    public float impulseForce;
+    public LayerMask ground;
 
     public CurrentPlayer currentPlayer;
 
-    Rigidbody2D rgb;
+    public Rigidbody2D rgb;
     bool isJumping;
 
     public virtual void Awake()
@@ -24,68 +27,51 @@ public class PlayableHero : MonoBehaviour {
 
     }
 
-	// Use this for initialization
-	public void Start () {
+    [HideInInspector] public PlayerState currentState;
+    [HideInInspector] public PlayerState previousState;
+    [HideInInspector] public Rigidbody2D playerBody;
+    //[HideInInspector] public Animator playerAnimator;
+
+    public void Start()
+    {
         rgb = GetComponent<Rigidbody2D>();
-        isJumping = false;
-	}
-	
-	// Update is called once per frame
-	public void Update () {
+        currentState = new Idle(this); playerBody = gameObject.GetComponent<Rigidbody2D>(); /*playerAnimator = gameObject.GetComponent<Animator>()*/;
+    }
 
-        if (!isSnared)
-        {
-            if (Input.GetAxis(currentPlayer.ToString() + "Horizontal") != 0)
-            {
-                if (!isSauced ^ !isSliding)
-                {
-                    rgb.velocity = new Vector2(Input.GetAxis(currentPlayer.ToString() + "Horizontal") * speed, rgb.velocity.y);
-                }
-                else
-                {
-                    rgb.AddForce(new Vector2(Input.GetAxis(currentPlayer.ToString() + "Horizontal") * 10, rgb.velocity.y));
-                    if (rgb.velocity.x > speed)
-                    {
-                        rgb.velocity = new Vector2(speed, rgb.velocity.y);
-                    }
-                    else if (rgb.velocity.x < -speed)
-                    {
-                        rgb.velocity = new Vector2(-speed, rgb.velocity.y);
-                    }
-                }
-            }
-            else if(!isSauced ^ !isSliding)
-            {
-                rgb.velocity = new Vector2(0, rgb.velocity.y);
-            }
-
-            if (Input.GetButtonDown(currentPlayer.ToString() + "Jump"))
-                rgb.AddForce(new Vector2(0, jumpHeight), ForceMode2D.Force);
-        }
-
-        /*if (Input.GetButtonDown(currentPlayer.ToString() + "Fire1"))
-            Debug.Log("Power" + currentPlayer.ToString());*/
-
+    public void Update()
+    {
         if(isSnared)
         {
-            if (!IsInvoking("Snare"))
-            {
-                Invoke("Snare", 2);
-            }
+            isSnared = false;
+            Snare();
         }
-        if(isBumped)
+        if (isSauced)
         {
+            isSauced = false;
+            Sauce();
+        }
+        if (isBumped)
+        {
+            isBumped = false;
             Bump();
         }
-        if(isSauced)
+        if (isReversed)
         {
-
+            isReversed = false;
+            Reverse();
         }
-        if(isRiversed)
-        {
+        currentState.Execute();
+    }
 
-        }
-	}
+    public void ChangeState(PlayerState next)
+    {
+        currentState.Exit();
+        previousState = currentState;
+        currentState = next;
+        currentState.Enter();
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision) { currentState.HandleCollision(collision); }
 
     protected virtual void Spell1()
     {
@@ -94,25 +80,298 @@ public class PlayableHero : MonoBehaviour {
 
     public void Snare()
     {
-        isSnared = false;
+        ChangeState(new Snared(this, 2));
     }
 
     public void Bump()
     {
-        //rgb.AddForce()
+        ChangeState(new Bumped(this, 1));
     }
 
     public void Sauce()
     {
+        ChangeState(new Sauced(this, 2));
+    }
+    public void Reverse()
+    {
+        ChangeState(new Reversed(this, 2));
+    }
+
+    public void SetWet(bool value)
+    {
+        if(value)
+        {
+            ChangeState(new IsWet(this));
+        }
+        else
+        {
+            previousState.Execute();
+        }
+    }
+}
+
+// Basic container for player states
+public class PlayerState
+{
+    public float debuffTimer;
+    protected PlayableHero myController;
+    public PlayerState(PlayableHero master) { myController = master; }
+    public virtual void Enter() { } // Called once when entering current state
+    public virtual void Execute() { } // Called once every update
+    public virtual void Exit() { } // Called once to clean-up before entering the next state
+    public virtual void HandleCollision(Collision2D collision) { } // Called by Controller's OnCollisionEnter2D
+}
+
+public class Idle : PlayerState
+{
+    public Idle(PlayableHero master) : base(master) { }
+
+    public override void Enter() { } // Called once when entering current state
+    public override void Execute()
+    {
+        if (Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") != 0)
+        {
+            myController.ChangeState(new Move(myController, 1));
+        }
+        if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Jump"))
+        {
+            myController.ChangeState(new Jump(myController,false,myController.currentState));
+        }
 
     }
-    public void Reserve()
+}
+
+public class Jump : PlayerState
+{
+    static int jumpNumber = 0;
+    bool backToPreviousState;
+    PlayerState previousState;
+    public Jump(PlayableHero master, bool back, PlayerState previousState) : base(master) { backToPreviousState = back; this.previousState = previousState; this.debuffTimer = debuffTimer; }
+    public override void Enter()  // Called once when entering current state
+    {
+        Debug.Log("pepi2 :)");
+        myController.rgb.AddForce(new Vector2(0, myController.jumpHeight), ForceMode2D.Force);
+    }
+
+    public override void Execute()
+    {
+        
+       if(backToPreviousState)
+       {
+            debuffTimer -= Time.deltaTime;
+       }
+    }
+    public override void HandleCollision(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            Debug.Log("pepi :)");
+            if (!backToPreviousState)
+            {
+                myController.ChangeState(new Idle(myController));
+            }
+            else
+            {
+                myController.ChangeState(previousState);
+            }
+            //myController.playerAnimator.SetBool("Airborn", false);
+        }
+    }
+
+    private void AddJumpForce() { myController.playerBody.AddForce(new Vector2(0, myController.jumpHeight), ForceMode2D.Impulse); }
+}
+
+public class Move : PlayerState
+{
+    int direction;
+    public Move(PlayableHero master, int direction) : base(master) { this.direction = direction; }
+    public override void Enter()
+    {
+        myController.rgb.velocity = new Vector2(Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") * myController.speed*direction, myController.rgb.velocity.y);
+    }
+    public override void Execute()
+    {
+        if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Jump"))
+        {
+            myController.ChangeState(new Jump(myController, false, myController.currentState));
+        }
+        if (Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") != 0)
+            myController.rgb.velocity = new Vector2(Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") * myController.speed * direction, myController.rgb.velocity.y);
+        else
+        {
+            myController.rgb.velocity = new Vector2(0, myController.rgb.velocity.y);
+            myController.ChangeState(new Idle(myController));
+        }
+
+    }
+    public override void Exit()
     {
 
     }
 
-    public void SetSliding(bool value)
+}
+
+public class Snared : PlayerState
+{
+    public Snared(PlayableHero master, float debuffTimer) : base(master) { this.debuffTimer = debuffTimer; }
+    public override void Enter()
     {
-        isSliding = value;
+        myController.rgb.velocity = new Vector2(0, 0);
     }
+    public override void Execute()
+    {
+        if (debuffTimer > 0)
+        {
+            myController.rgb.velocity = new Vector2(0, myController.rgb.velocity.y);
+            debuffTimer -= Time.deltaTime;
+        }
+        else
+        {
+            myController.ChangeState(new Idle(myController));
+        }
+    }
+    public override void Exit()
+    {
+
+    }
+
+}
+
+public class Sauced : PlayerState
+{
+    public Sauced(PlayableHero master, float debuffTimer) : base(master) { this.debuffTimer = debuffTimer; }
+    public override void Enter()
+    {
+
+    }
+    public override void Execute()
+    {
+        if(debuffTimer > 0)
+        {
+            if (Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") != 0)
+            {
+                myController.rgb.AddForce(new Vector2(Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") * 10, myController.rgb.velocity.y));
+                if (myController.rgb.velocity.x > myController.speed)
+                {
+                    myController.rgb.velocity = new Vector2(myController.speed, myController.rgb.velocity.y);
+                }
+                else if (myController.rgb.velocity.x < -myController.speed)
+                {
+                    myController.rgb.velocity = new Vector2(-myController.speed, myController.rgb.velocity.y);
+                }
+            }
+            if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Jump"))
+            {
+                myController.ChangeState(new Jump(myController, true, myController.currentState));
+            }
+            debuffTimer -= Time.deltaTime;
+        }
+        else
+        {
+            myController.ChangeState(new Idle(myController));
+        }
+    }
+    public override void Exit()
+    {
+
+    }
+
+}
+
+public class Bumped : PlayerState
+{
+    public Bumped(PlayableHero master, float debuffTimer) : base(master) { this.debuffTimer = debuffTimer; }
+    public override void Enter()
+    {
+        myController.rgb.AddForce(new Vector2(myController.impulseForce, 0), ForceMode2D.Impulse);
+    }
+    public override void Execute()
+    {
+        if(debuffTimer > 0)
+        {
+            debuffTimer -= Time.deltaTime;
+        }
+        else
+        {
+            myController.ChangeState(new Idle(myController));
+        }
+    }
+    public override void Exit()
+    {
+
+    }
+
+}
+
+public class Reversed : PlayerState
+{
+    public Reversed(PlayableHero master, float debuffTimer) : base(master) { this.debuffTimer = debuffTimer; }
+    public override void Enter()
+    {
+
+    }
+    public override void Execute()
+    {
+        
+        if (debuffTimer > 0)
+        {
+            if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Jump"))
+            {
+                myController.ChangeState(new Jump(myController, false, myController.currentState));
+            }
+            if (Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") != 0)
+            {
+                Debug.Log("tas un osti de belle graine");
+                myController.rgb.velocity = new Vector2(Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") * myController.speed * -1, myController.rgb.velocity.y);
+            }
+            else
+            {
+                myController.rgb.velocity = new Vector2(0, myController.rgb.velocity.y);
+            }
+            debuffTimer -= Time.deltaTime;
+        }
+        else
+        {
+            myController.ChangeState(new Idle(myController));
+        }
+
+    }
+    public override void Exit()
+    {
+
+    }
+
+}
+
+public class IsWet : PlayerState
+{
+    public IsWet(PlayableHero master) : base(master) {}
+    public override void Enter()
+    {
+
+    }
+    public override void Execute()
+    {
+            if (Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") != 0)
+            {
+                myController.rgb.AddForce(new Vector2(Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") * 10, myController.rgb.velocity.y));
+                if (myController.rgb.velocity.x > myController.speed)
+                {
+                    myController.rgb.velocity = new Vector2(myController.speed, myController.rgb.velocity.y);
+                }
+                else if (myController.rgb.velocity.x < -myController.speed)
+                {
+                    myController.rgb.velocity = new Vector2(-myController.speed, myController.rgb.velocity.y);
+                }
+            }
+            if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Jump"))
+            {
+                myController.ChangeState(new Jump(myController, false, myController.currentState));
+            }
+    }
+    public override void Exit()
+    {
+
+    }
+
 }

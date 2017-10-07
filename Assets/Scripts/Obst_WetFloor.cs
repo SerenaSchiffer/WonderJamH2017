@@ -18,7 +18,7 @@ public class Obst_WetFloor : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<PlayableHero>().SetSliding(true);
+            other.gameObject.GetComponent<PlayableHero>().SetWet(true);
         }
     }
 
@@ -26,7 +26,7 @@ public class Obst_WetFloor : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<PlayableHero>().SetSliding(false);
+            other.gameObject.GetComponent<PlayableHero>().SetWet(false);
         }
     }
 }
