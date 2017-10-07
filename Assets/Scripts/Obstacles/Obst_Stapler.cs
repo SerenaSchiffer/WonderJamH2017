@@ -8,7 +8,6 @@ public class Obst_Stapler : MonoBehaviour {
     public float shootingRate;
     Transform pos;
     float time;
-    bool switching;
 	// Use this for initialization
 	void Start () {
         pos = gameObject.GetComponent<Transform>();
