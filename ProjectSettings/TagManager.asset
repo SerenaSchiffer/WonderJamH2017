@@ -14,7 +14,7 @@ TagManager:
   - UI
   - 
   - 
-  - Ground
+  - 
   - 
   - 
   - 
@@ -41,4 +41,28 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background_World
+    uniqueID: 495271629
+    locked: 0
+  - name: Background_Level
+    uniqueID: 1604740453
+    locked: 0
+  - name: HiddenObstacle
+    uniqueID: 2264253791
+    locked: 0
+  - name: Obstacle
+    uniqueID: 1630771365
+    locked: 0
+  - name: Character.Cape
+    uniqueID: 1431108599
+    locked: 0
+  - name: Character.Body
+    uniqueID: 3316882327
+    locked: 0
+  - name: Character.Mask
+    uniqueID: 1280134695
+    locked: 0
+  - name: HUD
+    uniqueID: 2927814373
     locked: 0
