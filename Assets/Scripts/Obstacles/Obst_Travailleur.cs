@@ -68,14 +68,4 @@ public class Obst_Travailleur : MonoBehaviour {
         }
     }
 
-    void OnCollisionEnter2D(Collision2D coll)
-    {
-        if (coll.gameObject.tag == "Player")
-        {
-            //////////////////////////////////////////////MAYBE sa va marcher
-            //coll.GetComponent<PlayableHero>().Kill();
-        }
-
-    }
-
 }
