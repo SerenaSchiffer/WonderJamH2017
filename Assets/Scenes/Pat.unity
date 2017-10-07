@@ -108,42 +108,6 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &397547505 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1029436607609892, guid: 1872dac8cde78c04ea8aadc28365f475,
-    type: 2}
-  m_PrefabInternal: {fileID: 889025020}
---- !u!95 &397547509
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 397547505}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f157047e9af5c4e4aa1586320033a902, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!111 &397547510
-Animation:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 397547505}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 18587b752ed5aef45987cfb554953253, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1001 &889025020
 Prefab:
   m_ObjectHideFlags: 0
@@ -182,35 +146,6 @@ Prefab:
     - target: {fileID: 4863017764991428, guid: 1872dac8cde78c04ea8aadc28365f475, type: 2}
       propertyPath: m_RootOrder
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4301532470720410, guid: 1872dac8cde78c04ea8aadc28365f475, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.005
-      objectReference: {fileID: 0}
-    - target: {fileID: 61163023475752422, guid: 1872dac8cde78c04ea8aadc28365f475,
-        type: 2}
-      propertyPath: m_Offset.x
-      value: -0.005069796
-      objectReference: {fileID: 0}
-    - target: {fileID: 61163023475752422, guid: 1872dac8cde78c04ea8aadc28365f475,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 0.22178191
-      objectReference: {fileID: 0}
-    - target: {fileID: 61298478129766664, guid: 1872dac8cde78c04ea8aadc28365f475,
-        type: 2}
-      propertyPath: m_Offset.x
-      value: 0.0041947477
-      objectReference: {fileID: 0}
-    - target: {fileID: 61298478129766664, guid: 1872dac8cde78c04ea8aadc28365f475,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 0.16934672
-      objectReference: {fileID: 0}
-    - target: {fileID: 61298478129766664, guid: 1872dac8cde78c04ea8aadc28365f475,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 0.04235065
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1872dac8cde78c04ea8aadc28365f475, type: 2}
@@ -496,14 +431,6 @@ Prefab:
     - target: {fileID: 4600880362278680, guid: 5cade76537be233408acb107584b5d8d, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4600880362278680, guid: 5cade76537be233408acb107584b5d8d, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4600880362278680, guid: 5cade76537be233408acb107584b5d8d, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5cade76537be233408acb107584b5d8d, type: 2}
