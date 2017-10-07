@@ -25,8 +25,8 @@ public class Obst_RandomKillingThing : MonoBehaviour {
 
         target.x = transform.position.x + 15;
         target.y = transform.position.y + 15;
-        StartCoroutine(RepeatingFunction());
         repeatTime = Random.Range(minTimeRespawn, maxTimeRespawn);
+        StartCoroutine(RepeatingFunction()); 
     }
 	
 	// Update is called once per frame
