@@ -49,7 +49,7 @@ public class Obst_RandomKillingThing : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            //other.GetComponent<PlayableHero>.Kill();
+            //other.GetComponent<PlayableHero>().Kill();
             //
             ///////TODO
             //

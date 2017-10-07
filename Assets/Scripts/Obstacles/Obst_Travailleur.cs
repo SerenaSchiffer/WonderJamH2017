@@ -73,7 +73,7 @@ public class Obst_Travailleur : MonoBehaviour {
         if (coll.gameObject.tag == "Player")
         {
             //////////////////////////////////////////////MAYBE sa va marcher
-            //coll.GetComponent<PlayableHero>.Kill();
+            //coll.GetComponent<PlayableHero>().Kill();
         }
 
     }
