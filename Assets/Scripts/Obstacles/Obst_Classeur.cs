@@ -18,7 +18,7 @@ public class Obst_Classeur : MonoBehaviour {
     // Use this for initialization
     void Start () {
         tiroirTransform = gameObject.GetComponent<Transform>().GetChild(0);
-        tiroirCollider = gameObject.GetComponent<BoxCollider2D>();
+        tiroirCollider = tiroirTransform.gameObject.GetComponent<BoxCollider2D>();
         switching = true;
         vec = tiroirTransform.position;
         distance = 0;
@@ -38,14 +38,11 @@ public class Obst_Classeur : MonoBehaviour {
             {
                 switching = false;
                 distance = 0;
-
-
             }
             if (time <= 0)
             {
                 switching = true;
                 distance = 0;
-
             }
 
             if (switching)
@@ -61,8 +58,6 @@ public class Obst_Classeur : MonoBehaviour {
                     }
                        
                 }
-
-
             }
             if (!switching)
             {
@@ -78,6 +73,12 @@ public class Obst_Classeur : MonoBehaviour {
                     }
                 }
             }
+
+            if (tiroirTransform.position.x == targetClose)
+                tiroirCollider.enabled = false;
+            else
+                tiroirCollider.enabled = true;
+
         }
 
     }
