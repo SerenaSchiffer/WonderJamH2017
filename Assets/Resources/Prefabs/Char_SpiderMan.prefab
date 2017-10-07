@@ -70,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1830433102729842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.107, y: -0.29354, z: 0}
+  m_LocalPosition: {x: -5.5521803, y: -3.899, z: 0}
   m_LocalScale: {x: 2.6, y: 2.6, z: 2.6}
   m_Children:
   - {fileID: 4970163484242754}
@@ -136,7 +136,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.002108872, y: -0.010544337}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -147,7 +147,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 0.11423899, y: 0.29982066}
   m_EdgeRadius: 0
 --- !u!95 &95599893938488526
 Animator:
@@ -188,9 +188,12 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 0
+  spawn: {fileID: 0}
   currentPlayer: 1
   rgb: {fileID: 0}
   playerBody: {fileID: 0}
+  webPrefab: {fileID: 0}
+  webSpeed: 0
 --- !u!212 &212424762033250774
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -221,7 +224,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1431108599
-  m_SortingLayer: 5
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 0.97794116, g: 0, b: 0, a: 1}
@@ -263,9 +266,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -978084969
-  m_SortingLayer: 6
+  m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 425bcfe306d64204ebd3e29078580cca, type: 3}
   m_Color: {r: 0.76470596, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -273,7 +276,7 @@ SpriteRenderer:
   m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
 --- !u!212 &212852438024720888
 SpriteRenderer:
@@ -305,7 +308,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1280134695
-  m_SortingLayer: 7
+  m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

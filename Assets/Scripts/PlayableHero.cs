@@ -17,6 +17,7 @@ public class PlayableHero : MonoBehaviour {
     public float impulseForce;
     public LayerMask ground;
     public Transform spawn;
+    public Animator myAnimator;
 
     public CurrentPlayer currentPlayer;
 
@@ -36,6 +37,7 @@ public class PlayableHero : MonoBehaviour {
     public void Start()
     {
         rgb = GetComponent<Rigidbody2D>();
+        myAnimator = gameObject.GetComponent<Animator>();
         currentState = new Idle(this); playerBody = gameObject.GetComponent<Rigidbody2D>(); /*playerAnimator = gameObject.GetComponent<Animator>()*/;
     }
 
@@ -96,7 +98,7 @@ public class PlayableHero : MonoBehaviour {
     {
         Vector2 position = transform.position;
         Vector2 direction = Vector2.down;
-        float distance = 0.7f;
+        float distance = 1.1f;
         Debug.DrawRay(position, direction, Color.green);
         RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, ground);
         if (hit.collider != null)
@@ -232,6 +234,8 @@ public class Move : PlayerState
     public Move(PlayableHero master, int direction) : base(master) { this.direction = direction; }
     public override void Enter()
     {
+        Debug.Log("je marche");
+        myController.myAnimator.SetBool("isMoving", true);
         myController.rgb.velocity = new Vector2(Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") * myController.speed*direction, myController.rgb.velocity.y);
     }
     public override void Execute()
@@ -245,7 +249,17 @@ public class Move : PlayerState
             myController.ChangeState(new Jump(myController, false, myController.currentState));
         }
         if (Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") != 0)
+        {
             myController.rgb.velocity = new Vector2(Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") * myController.speed * direction, myController.rgb.velocity.y);
+            if(myController.rgb.velocity.x < 0 && myController.transform.localScale.x > 0)
+            {
+                myController.transform.localScale = new Vector3(-myController.transform.localScale.x, myController.transform.localScale.y, myController.transform.localScale.z);
+            }
+            else if(myController.rgb.velocity.x > 0 && myController.transform.localScale.x < 0)
+            {
+                myController.transform.localScale = new Vector3(-myController.transform.localScale.x, myController.transform.localScale.y, myController.transform.localScale.z);
+            }
+        }
         else
         {
             myController.rgb.velocity = new Vector2(0, myController.rgb.velocity.y);
@@ -255,7 +269,7 @@ public class Move : PlayerState
     }
     public override void Exit()
     {
-
+        myController.myAnimator.SetBool("isMoving", false);
     }
 
 }
