@@ -13,8 +13,7 @@ public class SpiderManHero : PlayableHero
     public override void Spell1()
     {
         base.Spell1();
-        
-        
+        Debug.Log("baboin");
     }
 
 }
