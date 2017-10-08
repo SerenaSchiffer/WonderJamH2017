@@ -99,11 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3fac35e0ff28ae42878ea651ac6dbfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSnared: 0
-  isSauced: 0
-  isReversed: 0
-  isSliding: 0
-  isBumped: 0
+  sauceTimer: 0
+  snaredTimer: 0
+  reverseTimer: 0
   speed: 5
   jumpHeight: 200
   impulseForce: 0
@@ -111,9 +109,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   spawn: {fileID: 0}
+  myAnimator: {fileID: 0}
   currentPlayer: 0
   rgb: {fileID: 0}
-  playerBody: {fileID: 0}
   bataCroutePrefab: {fileID: 1763865994555692, guid: 050659ab8b7344a419cfa50a96b1731b,
     type: 2}
   bataCrouteSpeed: 8

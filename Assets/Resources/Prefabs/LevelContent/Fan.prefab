@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: -100
+  pushKillingMachine: 0
 --- !u!212 &212875202568114060
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -177,14 +177,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3624370d9270b7f4b835f729a7b16b9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSnared: 0
-  isBumped: 0
-  isSauced: 0
-  isRiversed: 0
-  isSliding: 0
+  sauceTimer: 0
+  snaredTimer: 0
+  reverseTimer: 0
   speed: 5
   jumpHeight: 50
+  impulseForce: 0
+  ground:
+    serializedVersion: 2
+    m_Bits: 0
+  spawn: {fileID: 0}
+  myAnimator: {fileID: 0}
   currentPlayer: 1
+  rgb: {fileID: 0}
 --- !u!114 &114492399646936016
 MonoBehaviour:
   m_ObjectHideFlags: 1

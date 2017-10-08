@@ -99,11 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2345fc6b032daf746b0efc00515bf001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSnared: 0
-  isSauced: 0
-  isReversed: 0
-  isSliding: 0
-  isBumped: 0
+  sauceTimer: 0
+  snaredTimer: 0
+  reverseTimer: 0
   speed: 5
   jumpHeight: 200
   impulseForce: 0
@@ -111,9 +109,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   spawn: {fileID: 0}
+  myAnimator: {fileID: 0}
   currentPlayer: 1
   rgb: {fileID: 0}
-  playerBody: {fileID: 0}
   webPrefab: {fileID: 1109153058315894, guid: 1d9769b6c4550734bbd38b820c270e6a, type: 2}
   webSpeed: 8
 --- !u!212 &212634022200704754
