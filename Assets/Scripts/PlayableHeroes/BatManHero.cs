@@ -37,14 +37,14 @@ public class BatManHero : PlayableHero {
 
             Vector3 thisPlayerPosition = transform.position;
             Vector3 velVector = othPlayer.transform.position - transform.position;
-            if (velVector.x >= 0)
+            /*if (velVector.x >= 0)
             {
                 thisPlayerPosition.x += 1.0f;
             }
             else
             {
                 thisPlayerPosition.x -= 1.0f;
-            }
+            }*/
 
             int idSound = (int)Mathf.Round(Random.Range(0f, 1f));
             sounds[idSound].Play();
