@@ -181,7 +181,7 @@ MonoBehaviour:
   snaredTimer: 0
   reverseTimer: 0
   speed: 5
-  jumpHeight: 200
+  jumpHeight: 350
   impulseForce: 0
   ground:
     serializedVersion: 2

@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114664577691530142}
   - component: {fileID: 95599893938488526}
   - component: {fileID: 114811584996992538}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: Char_Jean
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4542807532401750}
   - component: {fileID: 212852438024720888}
-  m_Layer: 14
+  m_Layer: 12
   m_Name: Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1830433102729842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.179, y: -0.29354, z: 0}
+  m_LocalPosition: {x: -5.0146217, y: -3.7797327, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 2.6}
   m_Children:
   - {fileID: 4970163484242754}
@@ -124,7 +124,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &61295245647249788
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -186,7 +186,7 @@ MonoBehaviour:
   impulseForce: 0
   ground:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   spawn: {fileID: 0}
   myAnimator: {fileID: 0}
   currentPlayer: 1
@@ -208,11 +208,11 @@ MonoBehaviour:
   snaredTimer: 0
   reverseTimer: 0
   speed: 5
-  jumpHeight: 50
+  jumpHeight: 350
   impulseForce: 0
   ground:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   spawn: {fileID: 0}
   myAnimator: {fileID: 0}
   currentPlayer: 0
