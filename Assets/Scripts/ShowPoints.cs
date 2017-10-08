@@ -13,6 +13,15 @@ public class ShowPoints : MonoBehaviour {
     public Text ui_money_player1;
     public Text ui_money_player2;
     public Text ui_current_floor;
+    public Text ui_power_cooldown_p1;
+    public Text ui_power_cooldown_p2;
+
+    private PlayableHero player1;
+    private PlayableHero player2;
+
+    private void Start()
+    {
+    }
 
     void Update()
     {

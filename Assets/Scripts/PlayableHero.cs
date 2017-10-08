@@ -24,6 +24,8 @@ public class PlayableHero : MonoBehaviour {
 
     public Rigidbody2D rgb;
     bool isJumping;
+
+    
     
     protected AudioSource[] sounds;
     private AudioSource deathSound;
@@ -33,6 +35,9 @@ public class PlayableHero : MonoBehaviour {
     protected int cptPowerInLevel;
     protected float powerDelay;
     protected bool powerUsed;
+    protected float powerParticleTimer;
+    GameObject powerParticle;
+    float lastDeltaTime;
 
     public virtual void Awake()
     {
@@ -54,12 +59,31 @@ public class PlayableHero : MonoBehaviour {
         sauceSound = sounds[3];
         reverseSound = sounds[4];
 
+        powerParticleTimer = 0;
+
         currentState = new Idle(this); /*playerAnimator = gameObject.GetComponent<Animator>()*/;
         feedbackSpecial = null;
     }
 
     public void Update()
     {
+        if(currentPlayer == CurrentPlayer.Player1)
+        {
+            ShowPoints ui = GameObject.Find("PLAYER 1").GetComponent<ShowPoints>();
+            if (powerDelay > 0)
+                ui.ui_power_cooldown_p1.text = (int)powerDelay + "s";
+            else
+                ui.ui_power_cooldown_p1.text = "";
+        }
+        else if (currentPlayer == CurrentPlayer.Player1)
+        {
+            ShowPoints ui = GameObject.Find("PLAYER 2").GetComponent<ShowPoints>();
+            if (powerDelay > 0)
+                ui.ui_power_cooldown_p2.text = (int)powerDelay + "s";
+            else
+                ui.ui_power_cooldown_p2.text = "";
+        }
+        
         if (powerDelay <= 0 && powerUsed)
         {
             powerDelay = 2 * cptPowerInLevel;
@@ -70,7 +94,25 @@ public class PlayableHero : MonoBehaviour {
             powerDelay -= Time.deltaTime;
         }
 
+        bool isDelayFinished = (lastDeltaTime > 0 && powerDelay <= 0) ? true : false;
+        if(powerDelay <= 0 && isDelayFinished)
+        {
+            powerParticle = (GameObject)Instantiate(Resources.Load("Prefabs/Spell_Ready_Particle"));
+            powerParticle.transform.position = transform.position;
+            powerParticleTimer = 1f;
+        }
+
+        if (powerParticleTimer > 0)
+        {
+            powerParticleTimer -= Time.deltaTime;
+        }
+        else
+        {
+            Destroy(powerParticle);
+        }
+
         currentState.Execute();
+        lastDeltaTime = powerDelay;
     }
 
     public void ChangeState(PlayerState next)
@@ -151,6 +193,7 @@ public class PlayableHero : MonoBehaviour {
         ChangeState(new Dying(this));
     }
 
+    public float GetDelay() { return powerDelay; }
     public AudioSource GetDeathSound() { return deathSound; }
     public AudioSource GetSauceSound() { return sauceSound; }
     public AudioSource GetReverseSound() { return reverseSound; }
