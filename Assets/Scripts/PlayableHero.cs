@@ -24,20 +24,15 @@ public class PlayableHero : MonoBehaviour {
 
     public Rigidbody2D rgb;
     bool isJumping;
-
-    
     
     protected AudioSource[] sounds;
     private AudioSource deathSound;
     private AudioSource sauceSound;
     private AudioSource reverseSound;
 
-    protected int cptPowerInLevel;
-    protected float powerDelay;
-    protected bool powerUsed;
-    protected float powerParticleTimer;
-    GameObject powerParticle;
-    float lastDeltaTime;
+    public int cptPowerInLevel;
+    public float powerDelay;
+    public bool powerUsed;
 
     public virtual void Awake()
     {
@@ -59,31 +54,12 @@ public class PlayableHero : MonoBehaviour {
         sauceSound = sounds[3];
         reverseSound = sounds[4];
 
-        powerParticleTimer = 0;
-
         currentState = new Idle(this); /*playerAnimator = gameObject.GetComponent<Animator>()*/;
         feedbackSpecial = null;
     }
 
     public void Update()
     {
-        if(currentPlayer == CurrentPlayer.Player1)
-        {
-            ShowPoints ui = GameObject.Find("PLAYER 1").GetComponent<ShowPoints>();
-            if (powerDelay > 0)
-                ui.ui_power_cooldown_p1.text = (int)powerDelay + "s";
-            else
-                ui.ui_power_cooldown_p1.text = "";
-        }
-        else if (currentPlayer == CurrentPlayer.Player1)
-        {
-            ShowPoints ui = GameObject.Find("PLAYER 2").GetComponent<ShowPoints>();
-            if (powerDelay > 0)
-                ui.ui_power_cooldown_p2.text = (int)powerDelay + "s";
-            else
-                ui.ui_power_cooldown_p2.text = "";
-        }
-        
         if (powerDelay <= 0 && powerUsed)
         {
             powerDelay = 2 * cptPowerInLevel;
@@ -94,25 +70,7 @@ public class PlayableHero : MonoBehaviour {
             powerDelay -= Time.deltaTime;
         }
 
-        bool isDelayFinished = (lastDeltaTime > 0 && powerDelay <= 0) ? true : false;
-        if(powerDelay <= 0 && isDelayFinished)
-        {
-            powerParticle = (GameObject)Instantiate(Resources.Load("Prefabs/Spell_Ready_Particle"));
-            powerParticle.transform.position = transform.position;
-            powerParticleTimer = 1f;
-        }
-
-        if (powerParticleTimer > 0)
-        {
-            powerParticleTimer -= Time.deltaTime;
-        }
-        else
-        {
-            Destroy(powerParticle);
-        }
-
         currentState.Execute();
-        lastDeltaTime = powerDelay;
     }
 
     public void ChangeState(PlayerState next)
@@ -193,7 +151,6 @@ public class PlayableHero : MonoBehaviour {
         ChangeState(new Dying(this));
     }
 
-    public float GetDelay() { return powerDelay; }
     public AudioSource GetDeathSound() { return deathSound; }
     public AudioSource GetSauceSound() { return sauceSound; }
     public AudioSource GetReverseSound() { return reverseSound; }
@@ -217,7 +174,12 @@ public class Idle : PlayerState
 {
     public Idle(PlayableHero master) : base(master) { }
 
-    public override void Enter() { } // Called once when entering current state
+    public override void Enter()
+    {
+        GameObject.Destroy(myController.feedbackSpecial);
+        myController.feedbackSpecial = null;
+        myController.rgb.velocity = Vector2.zero;
+    } // Called once when entering current state
     public override void Execute()
     {
         if(Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1") && myController.GetPowerDelay() <= 0)
@@ -250,7 +212,7 @@ public class Jump : PlayerState
         {
             myController.myAnimator.SetBool("isJumping", true);
             if(previousState.ToString() == "Sauced")
-                myController.rgb.AddForce(new Vector2(0, myController.jumpHeight/2), ForceMode2D.Force);
+                myController.rgb.AddForce(new Vector2(0, myController.jumpHeight), ForceMode2D.Force);
             else
                 myController.rgb.AddForce(new Vector2(0, myController.jumpHeight), ForceMode2D.Force);
         }
@@ -333,6 +295,7 @@ public class Move : PlayerState
         }
         if (Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") != 0)
         {
+            myController.myAnimator.SetBool("isMoving", true);
             myController.rgb.velocity = new Vector2(Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") * myController.speed * direction, myController.rgb.velocity.y);
             if(myController.rgb.velocity.x < 0 && myController.transform.localScale.x > 0)
             {
@@ -380,8 +343,6 @@ public class Snared : PlayerState
         else
         {
             myController.ChangeState(new Idle(myController));
-            GameObject.Destroy(myController.feedbackSpecial);
-            myController.feedbackSpecial = null;
         }
     }
     public override void Exit()
@@ -400,6 +361,7 @@ public class Sauced : PlayerState
         myController.GetSauceSound().Play(44000);
         myController.feedbackSpecial = GameObject.Instantiate(Resources.Load("Prefabs/SpriteSauceMask")) as GameObject;
         myController.feedbackSpecial.transform.parent = myController.transform;
+        
     }
     public override void Execute()
     {
@@ -413,6 +375,7 @@ public class Sauced : PlayerState
             Debug.Log("testa");
             if (Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") != 0)
             {
+                myController.myAnimator.SetBool("isMoving", true);
                 float control = Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal");
                 
                 if ((control > 0 && myController.rgb.velocity.x >= 0) || (control < 0 && myController.rgb.velocity.x <= 0))
@@ -427,7 +390,19 @@ public class Sauced : PlayerState
                     {
                         myController.rgb.velocity = new Vector2(-myController.speed, myController.rgb.velocity.y);
                     }
+                    if (myController.rgb.velocity.x < 0 && myController.transform.localScale.x > 0)
+                    {
+                        myController.transform.localScale = new Vector3(-myController.transform.localScale.x, myController.transform.localScale.y, myController.transform.localScale.z);
+                    }
+                    else if (myController.rgb.velocity.x > 0 && myController.transform.localScale.x < 0)
+                    {
+                        myController.transform.localScale = new Vector3(-myController.transform.localScale.x, myController.transform.localScale.y, myController.transform.localScale.z);
+                    }
                 }
+            }
+            else
+            {
+                myController.myAnimator.SetBool("isMoving", false);
             }
             if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Jump"))
             {
@@ -437,13 +412,12 @@ public class Sauced : PlayerState
         }
         else
         {
-            GameObject.Destroy(myController.feedbackSpecial);
-            myController.feedbackSpecial = null;
             myController.ChangeState(new Idle(myController));
         }
     }
     public override void Exit()
     {
+        myController.myAnimator.SetBool("isMoving", false);
     }
 
 }
@@ -499,11 +473,21 @@ public class Reversed : PlayerState
             }
             if (Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") != 0)
             {
+                myController.myAnimator.SetBool("isMoving", true);
                 myController.rgb.velocity = new Vector2(Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") * myController.speed * -1, myController.rgb.velocity.y);
             }
             else
             {
+                myController.myAnimator.SetBool("isMoving", false);
                 myController.rgb.velocity = new Vector2(0, myController.rgb.velocity.y);
+            }
+            if (myController.rgb.velocity.x < 0 && myController.transform.localScale.x > 0)
+            {
+                myController.transform.localScale = new Vector3(-myController.transform.localScale.x, myController.transform.localScale.y, myController.transform.localScale.z);
+            }
+            else if (myController.rgb.velocity.x > 0 && myController.transform.localScale.x < 0)
+            {
+                myController.transform.localScale = new Vector3(-myController.transform.localScale.x, myController.transform.localScale.y, myController.transform.localScale.z);
             }
             debuffTimer -= Time.deltaTime;
         }
@@ -514,8 +498,7 @@ public class Reversed : PlayerState
     }
     public override void Exit()
     {
-        GameObject.Destroy(myController.feedbackSpecial);
-        myController.feedbackSpecial = null;
+        myController.myAnimator.SetBool("isMoving", false);
     }
 
 }
@@ -534,6 +517,7 @@ public class IsWet : PlayerState
         {
             direction = -1;
         }
+        
     }
     public override void Execute()
     {
@@ -543,6 +527,7 @@ public class IsWet : PlayerState
         }
         if (Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") != 0)
         {
+            myController.myAnimator.SetBool("isMoving", true);
             myController.rgb.AddForce(new Vector2(Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") * 10 * direction, myController.rgb.velocity.y));
             if (myController.rgb.velocity.x > myController.speed)
             {
@@ -552,7 +537,16 @@ public class IsWet : PlayerState
             {
                 myController.rgb.velocity = new Vector2(-myController.speed, myController.rgb.velocity.y);
             }
+            if (myController.rgb.velocity.x < 0 && myController.transform.localScale.x > 0)
+            {
+                myController.transform.localScale = new Vector3(-myController.transform.localScale.x, myController.transform.localScale.y, myController.transform.localScale.z);
+            }
+            else if (myController.rgb.velocity.x > 0 && myController.transform.localScale.x < 0)
+            {
+                myController.transform.localScale = new Vector3(-myController.transform.localScale.x, myController.transform.localScale.y, myController.transform.localScale.z);
+            }
         }
+        else { myController.myAnimator.SetBool("isMoving", false); }
         if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Jump"))
         {
             myController.ChangeState(new Jump(myController, false, myController.currentState));
@@ -560,7 +554,7 @@ public class IsWet : PlayerState
     }
     public override void Exit()
     {
-
+        myController.myAnimator.SetBool("isMoving", false);
     }
 
 }
@@ -576,19 +570,12 @@ public class CastPower1 : PlayerState
         myController.myAnimator.SetTrigger("Spell");
         animTimer = myController.myAnimator.GetCurrentAnimatorStateInfo(0).length;
         myController.Spell1();
+        myController.ChangeState(previousState);
     }
 
     public override void Execute()
     {
-        debuffTimer -= Time.deltaTime;
-        if (animTimer > 0)
-        {
-            animTimer -= Time.deltaTime;
-        }
-        else
-        {
-            myController.ChangeState(previousState);
-        }
+        
     }
 }
 

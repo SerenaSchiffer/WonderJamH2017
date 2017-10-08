@@ -18,8 +18,8 @@ public class CharacterSelect : MonoBehaviour {
     public static Characters player2Char = Characters.Spidercheese;
 
 
-    public Text[] player1;
-    public Text[] player2;
+    public Image[] player1;
+    public Image[] player2;
     public Text creditsText;
 
     bool coolDownP1;
@@ -39,6 +39,8 @@ public class CharacterSelect : MonoBehaviour {
         P1Selected = false;
         P2Selected = false;
         menuSounds = GetComponents<AudioSource>();
+        Money.moneyP1 = 0.00f;
+        Money.moneyP2 = 0.00f;
 	}
 
     int vraimod(float a, float b)
@@ -113,15 +115,13 @@ public class CharacterSelect : MonoBehaviour {
             menuSounds[1].Play();
         }
         
-        foreach (Text t in player1)
-            t.color = Color.white;
-        foreach (Text t in player2)
-            t.color = Color.white;
+        foreach (Image t in player1)
+            t.color = Color.black;
+        foreach (Image t in player2)
+            t.color = Color.black;
         
-        player1[player1Choice].color = ( P1Selected == true ? Color.cyan : Color.yellow);
-        player2[player2Choice].color = ( P2Selected == true ? Color.cyan : Color.yellow);
-        player1[player2Choice].color = Color.grey;
-        player2[player1Choice].color = Color.grey;
+        player1[player1Choice].color = ( P1Selected == true ? Color.white : Color.white);
+        player2[player2Choice].color = ( P2Selected == true ? Color.white : Color.white);
 
 
         if(P1Selected && P2Selected)
