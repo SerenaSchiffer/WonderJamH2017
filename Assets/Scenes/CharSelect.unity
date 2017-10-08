@@ -311,7 +311,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: JEAN GRAY
+  m_Text: JEAN GRAS
 --- !u!222 &183403769
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -527,7 +527,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'CREDITS : 0 ( 0 FLOORS ) - CTRL TO ADD COIN'
+  m_Text: 'CREDITS : 0 ( 0 FLOORS ) - SPECIAL TO ADD COIN'
 --- !u!222 &739425172
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -544,6 +544,7 @@ GameObject:
   - component: {fileID: 907297505}
   - component: {fileID: 907297504}
   - component: {fileID: 907297503}
+  - component: {fileID: 907297506}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -596,6 +597,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &907297506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 907297502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18016a0b1738744988139d864757302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player1:
+  - {fileID: 977434214}
+  - {fileID: 1440995466}
+  - {fileID: 687421797}
+  - {fileID: 183403768}
+  player2:
+  - {fileID: 1079890535}
+  - {fileID: 943242233}
+  - {fileID: 2117833171}
+  - {fileID: 1162493423}
 --- !u!1 &943242231
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,7 +907,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: JEAN GRAY
+  m_Text: JEAN GRAS
 --- !u!222 &1162493424
 CanvasRenderer:
   m_ObjectHideFlags: 0
