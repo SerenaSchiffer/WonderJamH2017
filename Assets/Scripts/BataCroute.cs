@@ -24,7 +24,7 @@ public class BataCroute : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(spawnerName);
+        
         if (other.tag == "Player" && other.name != spawnerName)
         {
             sound.Play();
