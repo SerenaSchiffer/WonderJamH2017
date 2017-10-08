@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SauceScript : MonoBehaviour
 {
-
+    float timer = 5f;
     // Use this for initialization
     void Start()
     {
@@ -16,5 +16,13 @@ public class SauceScript : MonoBehaviour
     {
         GetComponent<SpriteMask>().sprite = GetComponentInParent<SpriteRenderer>().sprite;
         transform.position = transform.parent.position;
+        if(timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

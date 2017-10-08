@@ -377,7 +377,7 @@ MonoBehaviour:
   baseX: 0.4062081
   baseY: -1.698032
   towerSize: 0
-  numberOfFloor: 10
+  numberOfFloor: 11
   tableFloor: []
   player1: {fileID: 0}
   player2: {fileID: 0}

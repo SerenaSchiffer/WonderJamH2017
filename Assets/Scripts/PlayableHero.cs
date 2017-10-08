@@ -214,9 +214,22 @@ public class Idle : PlayerState
 
     public override void Enter()
     {
-        GameObject.Destroy(myController.feedbackSpecial);
+        if (myController.feedbackSpecial != null)
+        {
+            Object.Destroy(myController.feedbackSpecial.gameObject);
+            myController.feedbackSpecial = null;
+        }
         myController.feedbackSpecial = null;
         myController.rgb.velocity = Vector2.zero;
+        Debug.Log(myController.transform.childCount);
+        if (myController.transform.childCount > 2)
+        {
+            if (myController.feedbackSpecial != null)
+            {
+                Object.Destroy(myController.feedbackSpecial.gameObject);
+                myController.feedbackSpecial = null;
+            }
+        }
     } // Called once when entering current state
     public override void Execute()
     {
@@ -405,12 +418,10 @@ public class Sauced : PlayerState
     {
         if(debuffTimer > 0)
         {
-            Debug.Log("testa");
             if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1") && myController.GetPowerDelay() <= 0)
             {
                 myController.ChangeState(new CastPower1(myController, myController.currentState));
             }
-            Debug.Log("testa");
             if (Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") != 0)
             {
                 myController.myAnimator.SetBool("isMoving", true);
@@ -418,7 +429,6 @@ public class Sauced : PlayerState
                 
                 if ((control > 0 && myController.rgb.velocity.x >= 0) || (control < 0 && myController.rgb.velocity.x <= 0))
                 {
-                    Debug.Log(control + "    " + myController.rgb.velocity.x);
                     myController.rgb.AddForce(new Vector2(Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") * 20, myController.rgb.velocity.y));
                     if (myController.rgb.velocity.x > myController.speed)
                     {
@@ -625,7 +635,8 @@ public class Dying : PlayerState
     public override void Enter()
     {
         myController.GetDeathSound().Play();
-        GameObject.Destroy(myController.feedbackSpecial);
+        if(myController.feedbackSpecial != null)
+            Object.Destroy(myController.feedbackSpecial.gameObject);
         myController.feedbackSpecial = null;
         debuffTimer = 0;
         deathParticles = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/Particle_Death"));
@@ -648,8 +659,6 @@ public class Dying : PlayerState
     {
         myController.GetComponent<BoxCollider2D>().enabled = true;
         myController.transform.position = myController.spawn.position;
-        GameObject.Destroy(myController.feedbackSpecial);
-        myController.feedbackSpecial = null;
     }
 
 }
