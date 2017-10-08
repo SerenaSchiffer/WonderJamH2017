@@ -65,6 +65,9 @@ public class GenerateMap : MonoBehaviour {
                 player1.transform.position = player1.GetComponent<PlayableHero>().spawn.position;
                 break;
         }
+        player1.GetComponent<SpriteRenderer>().sortingOrder = 2;
+        player1.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 2;
+        player1.transform.GetChild(1).GetComponent<SpriteRenderer>().sortingOrder = 2;
 
 
         switch (CharacterSelect.player2Char)
@@ -97,6 +100,10 @@ public class GenerateMap : MonoBehaviour {
                 player2.transform.position = player2.GetComponent<PlayableHero>().spawn.position;
                 break;
         }
+        player2.GetComponent<SpriteRenderer>().sortingOrder = 3;
+        player2.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 3;
+        player2.transform.GetChild(1).GetComponent<SpriteRenderer>().sortingOrder = 3;
+
     }
 	
 	// Update is called once per frame
