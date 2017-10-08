@@ -38,11 +38,10 @@ GameObject:
   - component: {fileID: 212634022200704754}
   - component: {fileID: 61295245647249788}
   - component: {fileID: 50506041304478470}
-  - component: {fileID: 114664577691530142}
   - component: {fileID: 95599893938488526}
-  - component: {fileID: 114811584996992538}
-  m_Layer: 13
-  m_Name: Char_Jean
+  - component: {fileID: 114109310360996232}
+  m_Layer: 12
+  m_Name: Char_Batman
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4542807532401750}
   - component: {fileID: 212852438024720888}
-  m_Layer: 14
+  m_Layer: 12
   m_Name: Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,8 +70,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1830433102729842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.179, y: -0.29354, z: 0}
-  m_LocalScale: {x: 2.6, y: 2.6, z: 2.6}
+  m_LocalPosition: {x: -3.946, y: -0.29354, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 2.6}
   m_Children:
   - {fileID: 4970163484242754}
   - {fileID: 4542807532401750}
@@ -124,7 +123,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &61295245647249788
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -159,7 +158,7 @@ Animator:
   m_GameObject: {fileID: 1830433102729842}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4df588ffb500247489bc78823e6afcb7, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3492e23379c21bb488bc41a418f407ef, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -167,7 +166,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114664577691530142
+--- !u!114 &114109310360996232
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -175,52 +174,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1830433102729842}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2345fc6b032daf746b0efc00515bf001, type: 3}
+  m_Script: {fileID: 11500000, guid: c3fac35e0ff28ae42878ea651ac6dbfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSnared: 0
-  isSauced: 0
-  isReversed: 0
-  isSliding: 0
-  isBumped: 0
+  sauceTimer: 0
+  snaredTimer: 0
+  reverseTimer: 0
   speed: 5
-  jumpHeight: 200
+  jumpHeight: 350
   impulseForce: 0
   ground:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   spawn: {fileID: 0}
-  currentPlayer: 1
-  rgb: {fileID: 0}
-  playerBody: {fileID: 0}
-  webPrefab: {fileID: 0}
-  webSpeed: 0
---- !u!114 &114811584996992538
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1830433102729842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95a4590327cc47b4aafd890b23e839a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSnared: 0
-  isSauced: 0
-  isReversed: 0
-  isSliding: 0
-  isBumped: 0
-  speed: 5
-  jumpHeight: 50
-  impulseForce: 0
-  ground:
-    serializedVersion: 2
-    m_Bits: 0
-  spawn: {fileID: 0}
+  myAnimator: {fileID: 0}
   currentPlayer: 0
   rgb: {fileID: 0}
-  playerBody: {fileID: 0}
+  bataCroutePrefab: {fileID: 1763865994555692, guid: 050659ab8b7344a419cfa50a96b1731b,
+    type: 2}
+  bataCrouteSpeed: 0
 --- !u!212 &212424762033250774
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -254,7 +226,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
-  m_Color: {r: 0.97794116, g: 0.7486309, b: 0, a: 1}
+  m_Color: {r: 0.1254902, g: 0.13725491, b: 0.213, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -296,7 +268,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 425bcfe306d64204ebd3e29078580cca, type: 3}
-  m_Color: {r: 0, g: 0.76470596, b: 0.19513193, a: 1}
+  m_Color: {r: 0.08758651, g: 0.09747151, b: 0.19852942, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

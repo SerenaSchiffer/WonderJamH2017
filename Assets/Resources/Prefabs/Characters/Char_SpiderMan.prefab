@@ -38,10 +38,10 @@ GameObject:
   - component: {fileID: 212634022200704754}
   - component: {fileID: 61295245647249788}
   - component: {fileID: 50506041304478470}
+  - component: {fileID: 114664577691530142}
   - component: {fileID: 95599893938488526}
-  - component: {fileID: 114180266281140248}
   m_Layer: 12
-  m_Name: Char_Aquaman
+  m_Name: Char_SpiderMan
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,8 +70,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1830433102729842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.9031825, y: -3.894312, z: 0}
-  m_LocalScale: {x: 2.6, y: 2.6, z: 2.6}
+  m_LocalPosition: {x: -0.39208364, y: 0.794919, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 2.6}
   m_Children:
   - {fileID: 4970163484242754}
   - {fileID: 4542807532401750}
@@ -98,7 +98,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1204365758810162}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1228, y: -0.065, z: 0}
+  m_LocalPosition: {x: -0.12280014, y: -0.065, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children: []
   m_Father: {fileID: 4442921683727986}
@@ -158,7 +158,7 @@ Animator:
   m_GameObject: {fileID: 1830433102729842}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c8fe0af1a139356419daf25dde6571df, type: 2}
+  m_Controller: {fileID: 9100000, guid: 96af96855bd90af44aeba0a8e8fd0999, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -166,7 +166,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114180266281140248
+--- !u!114 &114664577691530142
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -174,14 +174,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1830433102729842}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd8cea89efa8ed24ba0a42d524182384, type: 3}
+  m_Script: {fileID: 11500000, guid: 2345fc6b032daf746b0efc00515bf001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSnared: 0
-  isSauced: 0
-  isReversed: 0
-  isSliding: 0
-  isBumped: 0
+  sauceTimer: 0
+  snaredTimer: 0
+  reverseTimer: 0
   speed: 5
   jumpHeight: 350
   impulseForce: 0
@@ -189,9 +187,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   spawn: {fileID: 0}
+  myAnimator: {fileID: 0}
   currentPlayer: 0
   rgb: {fileID: 0}
-  playerBody: {fileID: 0}
+  webPrefab: {fileID: 1109153058315894, guid: 1d9769b6c4550734bbd38b820c270e6a, type: 2}
+  webSpeed: 0
 --- !u!212 &212424762033250774
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -225,7 +225,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
-  m_Color: {r: 0.24313727, g: 0.5882353, b: 0.011764707, a: 1}
+  m_Color: {r: 0.97794116, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -267,7 +267,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 425bcfe306d64204ebd3e29078580cca, type: 3}
-  m_Color: {r: 0.8014706, g: 0.4855968, b: 0.0117863435, a: 1}
+  m_Color: {r: 0.76470596, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
