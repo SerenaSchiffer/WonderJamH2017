@@ -23,16 +23,18 @@ public class PlayableHero : MonoBehaviour {
 
     public Rigidbody2D rgb;
     bool isJumping;
-
-    protected int cptPowerInLevel;
-    protected float powerDelay;
-    protected bool powerUsed;
+    
+    protected AudioSource[] powerSounds;
+    public int cptPowerInLevel;
+    public float powerDelay;
+    public bool powerUsed;
 
     public virtual void Awake()
     {
         cptPowerInLevel = 0;
         powerDelay = 0;
         powerUsed = false;
+        powerSounds = GetComponents<AudioSource>();
     }
 
     [HideInInspector] public PlayerState currentState;
@@ -90,7 +92,6 @@ public class PlayableHero : MonoBehaviour {
 
     public void Snare()
     {
-        Debug.Log("SNARED");
         ChangeState(new Snared(this, snaredTimer));
     }
 
@@ -146,9 +147,8 @@ public class PlayableHero : MonoBehaviour {
 public class PlayerState
 {
     public float debuffTimer;
-    public Animator anim;
     protected PlayableHero myController;
-    public PlayerState(PlayableHero master) { myController = master; anim = myController.GetComponent<Animator>(); }
+    public PlayerState(PlayableHero master) { myController = master; }
     public virtual void Enter() { } // Called once when entering current state
     public virtual void Execute() { } // Called once every update
     public virtual void Exit() { } // Called once to clean-up before entering the next state
@@ -163,7 +163,8 @@ public class Idle : PlayerState
     public override void Enter() { } // Called once when entering current state
     public override void Execute()
     {
-        if(Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1"))
+        Debug.Log(myController.powerDelay);
+        if(Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1") && myController.powerDelay <= 0)
         {
             myController.ChangeState(new CastPower1(myController, myController.currentState));
         }
@@ -261,7 +262,7 @@ public class Move : PlayerState
     }
     public override void Execute()
     {
-        if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1"))
+        if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1") && myController.powerDelay <= 0)
         {
             myController.ChangeState(new CastPower1(myController, myController.previousState));
         }
@@ -335,7 +336,7 @@ public class Sauced : PlayerState
         if(debuffTimer > 0)
         {
             Debug.Log("testa");
-            if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1"))
+            if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1") && myController.powerDelay <= 0)
             {
                 myController.ChangeState(new CastPower1(myController, myController.currentState));
             }
@@ -415,7 +416,7 @@ public class Reversed : PlayerState
     {
         if (debuffTimer > 0)
         {
-            if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1"))
+            if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1") && myController.powerDelay <= 0)
             {
                 myController.ChangeState(new CastPower1(myController, myController.previousState));
             }
@@ -453,7 +454,7 @@ public class IsWet : PlayerState
     }
     public override void Execute()
     {
-        if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1"))
+        if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1") && myController.powerDelay <= 0)
         {
             myController.ChangeState(new CastPower1(myController, myController.currentState));
         }
@@ -490,8 +491,8 @@ public class CastPower1 : PlayerState
     public CastPower1(PlayableHero master, PlayerState previousState) : base(master) { this.previousState = previousState;}
     public override void Enter()  // Called once when entering current state
     {
-        anim.SetTrigger("Spell");
-        animTimer = anim.GetCurrentAnimatorStateInfo(0).length;
+        myController.myAnimator.SetTrigger("Spell");
+        animTimer = myController.myAnimator.GetCurrentAnimatorStateInfo(0).length;
         myController.Spell1();
     }
 

@@ -44,7 +44,10 @@ public class SpiderManHero : PlayableHero
                 thisPlayerPosition.x -= 0.4f;
             }
 
-            Debug.Log(velVector);
+
+            int idSound = (int)Mathf.Round(Random.Range(0f, 1f));
+            powerSounds[idSound].Play();
+
             web.transform.position = thisPlayerPosition;
             web.GetComponent<Web>().SetSpawnerName(name);
             web.GetComponent<Rigidbody2D>().velocity = velVector * webSpeed;

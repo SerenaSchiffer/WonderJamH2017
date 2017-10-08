@@ -28,6 +28,8 @@ public class ProfXHero : PlayableHero {
                 othPlayer = players[0];
             }
 
+            int idSound = (int)Mathf.Round(Random.Range(0f, 1f));
+            powerSounds[idSound].Play();
             othPlayer.GetComponent<PlayableHero>().Reverse();
 
             cptPowerInLevel++;
