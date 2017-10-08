@@ -33,6 +33,9 @@ public class PlayableHero : MonoBehaviour {
     public int cptPowerInLevel;
     public float powerDelay;
     public bool powerUsed;
+    protected float powerParticleTimer;
+    GameObject powerParticle;
+    float lastDeltaTime;
 
     public virtual void Awake()
     {
@@ -60,6 +63,22 @@ public class PlayableHero : MonoBehaviour {
 
     public void Update()
     {
+        if (currentPlayer == CurrentPlayer.Player1)
+        {
+            ShowPoints ui = GameObject.Find("PLAYER 1").GetComponent<ShowPoints>();
+            if (powerDelay > 0)
+                ui.ui_power_cooldown_p1.text = (int)powerDelay + "s";
+            else
+                ui.ui_power_cooldown_p1.text = "";
+        }
+        else if (currentPlayer == CurrentPlayer.Player1)
+        {
+            ShowPoints ui = GameObject.Find("PLAYER 2").GetComponent<ShowPoints>();
+            if (powerDelay > 0)
+                ui.ui_power_cooldown_p2.text = (int)powerDelay + "s";
+            else
+                ui.ui_power_cooldown_p2.text = "";
+        }
         if (powerDelay <= 0 && powerUsed)
         {
             powerDelay = 2 * cptPowerInLevel;
@@ -70,7 +89,26 @@ public class PlayableHero : MonoBehaviour {
             powerDelay -= Time.deltaTime;
         }
 
+        bool isDelayFinished = (lastDeltaTime > 0 && powerDelay <= 0) ? true : false;
+        if (powerDelay <= 0 && isDelayFinished)
+        {
+            powerParticle = (GameObject)Instantiate(Resources.Load("Prefabs/Spell_Ready_Particle"));
+            powerParticle.transform.position = transform.position;
+            powerParticleTimer = 1f;
+        }
+
+        if (powerParticleTimer > 0)
+        {
+            powerParticleTimer -= Time.deltaTime;
+        }
+        else
+        {
+            Destroy(powerParticle);
+        }
+
+
         currentState.Execute();
+        lastDeltaTime = powerDelay;
     }
 
     public void ChangeState(PlayerState next)
