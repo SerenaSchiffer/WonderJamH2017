@@ -10,7 +10,7 @@ public enum CurrentPlayer
 
 public class PlayableHero : MonoBehaviour {
 
-    public bool isSnared, isSauced, isReversed, isSliding, isBumped;
+    public float sauceTimer, snaredTimer, reverseTimer;
     int direction = 1;
     public float speed = 5f;
     public float jumpHeight = 50f;
@@ -31,39 +31,20 @@ public class PlayableHero : MonoBehaviour {
 
     [HideInInspector] public PlayerState currentState;
     [HideInInspector] public PlayerState previousState;
-    [HideInInspector] public Rigidbody2D playerBody;
     //[HideInInspector] public Animator playerAnimator;
 
     public void Start()
     {
         rgb = GetComponent<Rigidbody2D>();
         myAnimator = gameObject.GetComponent<Animator>();
-        currentState = new Idle(this); playerBody = gameObject.GetComponent<Rigidbody2D>(); /*playerAnimator = gameObject.GetComponent<Animator>()*/;
+        currentState = new Idle(this); /*playerAnimator = gameObject.GetComponent<Animator>()*/;
     }
 
     public void Update()
     {
-        if(isSnared)
-        {
-            isSnared = false;
-            Snare();
-        }
-        if (isSauced)
-        {
-            isSauced = false;
-            Sauce();
-        }
-        if (isBumped)
-        {
-            isBumped = false;
-            Bump();
-        }
-        if (isReversed)
-        {
-            isReversed = false;
-            Reverse();
-        }
         currentState.Execute();
+
+        Debug.Log(currentState.ToString());
     }
 
     public void ChangeState(PlayerState next)
@@ -91,7 +72,7 @@ public class PlayableHero : MonoBehaviour {
 
     public void Snare()
     {
-        ChangeState(new Snared(this, 2));
+        ChangeState(new Snared(this, snaredTimer));
     }
 
     public bool LookGround()
@@ -115,11 +96,11 @@ public class PlayableHero : MonoBehaviour {
 
     public void Sauce()
     {
-        ChangeState(new Sauced(this, 2));
+        ChangeState(new Sauced(this, sauceTimer));
     }
     public void Reverse()
     {
-        ChangeState(new Reversed(this, 2));
+        ChangeState(new Reversed(this, reverseTimer));
     }
 
     public void SetWet(bool value)
@@ -189,7 +170,10 @@ public class Jump : PlayerState
         Debug.Log(myController.LookGround());
         if (myController.LookGround())
         {
-            myController.rgb.AddForce(new Vector2(0, myController.jumpHeight), ForceMode2D.Force);
+            if(previousState.ToString() == "Sauced")
+                myController.rgb.AddForce(new Vector2(0, myController.jumpHeight/2), ForceMode2D.Force);
+            else
+                myController.rgb.AddForce(new Vector2(0, myController.jumpHeight), ForceMode2D.Force);
         }
     }
 
@@ -225,7 +209,7 @@ public class Jump : PlayerState
         }
     }
 
-    private void AddJumpForce() { myController.playerBody.AddForce(new Vector2(0, myController.jumpHeight), ForceMode2D.Impulse); }
+    private void AddJumpForce() { myController.rgb.AddForce(new Vector2(0, myController.jumpHeight), ForceMode2D.Impulse); }
 }
 
 public class Move : PlayerState
@@ -305,26 +289,34 @@ public class Sauced : PlayerState
     public Sauced(PlayableHero master, float debuffTimer) : base(master) { this.debuffTimer = debuffTimer; }
     public override void Enter()
     {
-
+        myController.rgb.velocity = new Vector2(myController.rgb.velocity.x * 2, myController.rgb.velocity.y);
     }
     public override void Execute()
     {
         if(debuffTimer > 0)
         {
+            Debug.Log("testa");
             if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1"))
             {
-                myController.ChangeState(new CastPower1(myController, myController.previousState));
+                myController.ChangeState(new CastPower1(myController, myController.currentState));
             }
+            Debug.Log("testa");
             if (Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") != 0)
             {
-                myController.rgb.AddForce(new Vector2(Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") * 10, myController.rgb.velocity.y));
-                if (myController.rgb.velocity.x > myController.speed)
+                float control = Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal");
+                
+                if ((control > 0 && myController.rgb.velocity.x >= 0) || (control < 0 && myController.rgb.velocity.x <= 0))
                 {
-                    myController.rgb.velocity = new Vector2(myController.speed, myController.rgb.velocity.y);
-                }
-                else if (myController.rgb.velocity.x < -myController.speed)
-                {
-                    myController.rgb.velocity = new Vector2(-myController.speed, myController.rgb.velocity.y);
+                    Debug.Log(control + "    " + myController.rgb.velocity.x);
+                    myController.rgb.AddForce(new Vector2(Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") * 20, myController.rgb.velocity.y));
+                    if (myController.rgb.velocity.x > myController.speed)
+                    {
+                        myController.rgb.velocity = new Vector2(myController.speed, myController.rgb.velocity.y);
+                    }
+                    else if (myController.rgb.velocity.x < -myController.speed)
+                    {
+                        myController.rgb.velocity = new Vector2(-myController.speed, myController.rgb.velocity.y);
+                    }
                 }
             }
             if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Jump"))
@@ -463,6 +455,10 @@ public class CastPower1 : PlayerState
 
     public override void Execute()
     {
+        if(backToPreviousState)
+        {
+            debuffTimer -= Time.deltaTime;
+        }
         if (animTimer > 0)
         {
             animTimer -= Time.deltaTime;
