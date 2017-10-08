@@ -78,6 +78,10 @@ public class PlayableHero : MonoBehaviour {
         currentState.HandleCollision(collision);
     }
     public void OnCollisionStay2D(Collision2D collision) { currentState.HandleCollision(collision); }
+    public void OnCollisionExit2D(Collision2D collision)
+    {
+        currentState.CollisionExit(collision);
+    }
 
     public virtual void Spell1()
     {
@@ -148,6 +152,7 @@ public class PlayerState
     public virtual void Execute() { } // Called once every update
     public virtual void Exit() { } // Called once to clean-up before entering the next state
     public virtual void HandleCollision(Collision2D collision) { } // Called by Controller's OnCollisionEnter2D and OnCollisionStay2D
+    public virtual void CollisionExit(Collision2D coll) { } // Exit
 }
 
 public class Idle : PlayerState
@@ -178,12 +183,14 @@ public class Jump : PlayerState
     static int jumpNumber = 0;
     bool backToPreviousState;
     PlayerState previousState;
-    public Jump(PlayableHero master, bool back, PlayerState previousState) : base(master) { backToPreviousState = back; this.previousState = previousState; this.debuffTimer = debuffTimer; }
+    bool groundLeft;
+    public Jump(PlayableHero master, bool back, PlayerState previousState) : base(master) { backToPreviousState = back; this.previousState = previousState; this.debuffTimer = debuffTimer; groundLeft = false; }
     public override void Enter()  // Called once when entering current state
     {
         Debug.Log(myController.LookGround());
         if (myController.LookGround())
         {
+            myController.myAnimator.SetBool("isJumping", true);
             if(previousState.ToString() == "Sauced")
                 myController.rgb.AddForce(new Vector2(0, myController.jumpHeight/2), ForceMode2D.Force);
             else
@@ -209,18 +216,34 @@ public class Jump : PlayerState
     {
         if (collision.gameObject.tag == "Ground")
         {
-            if (!backToPreviousState || previousState.ToString() == "IsWet")
+            if (groundLeft)
             {
-                myController.ChangeState(new Idle(myController));
-            }
-            else
-            {
-                myController.ChangeState(previousState);
+                if (!backToPreviousState || previousState.ToString() == "IsWet")
+                {
+                    myController.ChangeState(new Idle(myController));
+                }
+                else
+                {
+                    myController.ChangeState(previousState);
+                }
             }
 
             
             //myController.playerAnimator.SetBool("Airborn", false);
         }
+    }
+    public override void CollisionExit(Collision2D coll)
+    {
+        if(coll.gameObject.tag == "Ground")
+        {
+            groundLeft = true;
+        }
+    }
+
+    public override void Exit()
+    {
+        myController.myAnimator.SetBool("isJumping", false);
+
     }
 
     private void AddJumpForce() { myController.rgb.AddForce(new Vector2(0, myController.jumpHeight), ForceMode2D.Impulse); }
@@ -461,7 +484,7 @@ public class CastPower1 : PlayerState
     public CastPower1(PlayableHero master, PlayerState previousState) : base(master) { this.previousState = previousState;}
     public override void Enter()  // Called once when entering current state
     {
-        anim.SetTrigger("castSpell");
+        anim.SetTrigger("Spell");
         animTimer = anim.GetCurrentAnimatorStateInfo(0).length;
         myController.Spell1();
     }

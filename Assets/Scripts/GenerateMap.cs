@@ -7,7 +7,6 @@ public class GenerateMap : MonoBehaviour {
     public float baseY;
     public int towerSize;
     public int numberOfFloor;
-    Vector2 basePosition;
 	// Use this for initialization
 	void Start () {
         float height = 2f * Camera.main.orthographicSize;
@@ -15,8 +14,8 @@ public class GenerateMap : MonoBehaviour {
         for (int i = 0; i < towerSize;i++)
         {
             int randomFloor = Random.Range(1, numberOfFloor + 1);
-            GameObject newFloor = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/Level" + randomFloor));
-            newFloor.transform.position = new Vector3(basePosition.x, baseY+i*height, 0);
+            GameObject newFloor = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/Levels/Level" + randomFloor));
+            newFloor.transform.position = new Vector3(baseX, baseY+i*height, 0);
         }
 	}
 	
