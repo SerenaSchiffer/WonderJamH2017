@@ -918,7 +918,7 @@ Transform:
   m_Children:
   - {fileID: 4050873644283976}
   m_Father: {fileID: 4317642763917262}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4130958158402100
 Transform:
@@ -958,7 +958,7 @@ Transform:
   m_Children:
   - {fileID: 4361697024304708}
   m_Father: {fileID: 4317642763917262}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4213713154471442
 Transform:
@@ -985,7 +985,7 @@ Transform:
   m_Children:
   - {fileID: 4372298896705716}
   m_Father: {fileID: 4317642763917262}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4218700599254622
 Transform:
@@ -1038,6 +1038,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4225842059560440}
+  - {fileID: 4331067603494372}
   - {fileID: 4446476843545658}
   - {fileID: 4681094622992200}
   - {fileID: 4738588742644200}
@@ -1048,7 +1049,6 @@ Transform:
   - {fileID: 4082182757879742}
   - {fileID: 4173591496263048}
   - {fileID: 4359179303988718}
-  - {fileID: 4331067603494372}
   - {fileID: 4935194826849172}
   - {fileID: 4862962270448946}
   - {fileID: 4936479701508272}
@@ -1069,7 +1069,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4317642763917262}
-  m_RootOrder: 11
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4335307588219860
 Transform:
@@ -1096,7 +1096,7 @@ Transform:
   m_Children:
   - {fileID: 4335307588219860}
   m_Father: {fileID: 4317642763917262}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4361697024304708
 Transform:
@@ -1176,7 +1176,7 @@ Transform:
   - {fileID: 4722190902006038}
   - {fileID: 4702178799245056}
   m_Father: {fileID: 4317642763917262}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4465192170257706
 Transform:
@@ -1190,7 +1190,7 @@ Transform:
   m_Children:
   - {fileID: 4913798328349304}
   m_Father: {fileID: 4317642763917262}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4498320447080678
 Transform:
@@ -1296,7 +1296,7 @@ Transform:
   m_Children:
   - {fileID: 4165531620412158}
   m_Father: {fileID: 4317642763917262}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4667546742338280
 Transform:
@@ -1322,7 +1322,7 @@ Transform:
   m_LocalScale: {x: -6, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 4317642763917262}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4702178799245056
 Transform:
@@ -1362,7 +1362,7 @@ Transform:
   m_Children:
   - {fileID: 4624735719046936}
   m_Father: {fileID: 4317642763917262}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4747851875646354
 Transform:
@@ -1376,7 +1376,7 @@ Transform:
   m_Children:
   - {fileID: 4029590678605682}
   m_Father: {fileID: 4317642763917262}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4758351629794816
 Transform:
@@ -2756,6 +2756,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alwaysVisible: 1
   gravityScaleFalling: 1
+  canReappear: 0
 --- !u!114 &114312062996789134
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2769,6 +2770,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alwaysVisible: 1
   gravityScaleFalling: 1
+  canReappear: 0
 --- !u!114 &114378705152229158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2794,6 +2796,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alwaysVisible: 1
   gravityScaleFalling: 1
+  canReappear: 0
 --- !u!114 &114651257972434200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2842,6 +2845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alwaysVisible: 1
   gravityScaleFalling: 1
+  canReappear: 0
 --- !u!114 &114896024183911610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2877,6 +2881,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alwaysVisible: 1
   gravityScaleFalling: 1
+  canReappear: 0
 --- !u!114 &114975415391831802
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2890,6 +2895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alwaysVisible: 1
   gravityScaleFalling: 1
+  canReappear: 0
 --- !u!120 &120917619589168276
 LineRenderer:
   m_ObjectHideFlags: 1
