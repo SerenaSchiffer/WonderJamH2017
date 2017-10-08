@@ -39,6 +39,8 @@ public class CharacterSelect : MonoBehaviour {
         P1Selected = false;
         P2Selected = false;
         menuSounds = GetComponents<AudioSource>();
+        Money.moneyP1 = 0.00f;
+        Money.moneyP2 = 0.00f;
 	}
 
     int vraimod(float a, float b)
@@ -120,8 +122,6 @@ public class CharacterSelect : MonoBehaviour {
         
         player1[player1Choice].color = ( P1Selected == true ? Color.white : Color.white);
         player2[player2Choice].color = ( P2Selected == true ? Color.white : Color.white);
-        player1[player2Choice].color = Color.black;
-        player2[player1Choice].color = Color.black;
 
 
         if(P1Selected && P2Selected)
