@@ -12,9 +12,9 @@ public class PlayableHero : MonoBehaviour {
 
     public float sauceTimer, snaredTimer, reverseTimer;
     int direction = 1;
+    public float impulseForce;
     public float speed = 5f;
     public float jumpHeight = 50f;
-    public float impulseForce;
     public LayerMask ground;
     public Transform spawn;
     public Animator myAnimator;
@@ -90,6 +90,7 @@ public class PlayableHero : MonoBehaviour {
 
     public void Snare()
     {
+        Debug.Log("SNARED");
         ChangeState(new Snared(this, snaredTimer));
     }
 
@@ -107,9 +108,9 @@ public class PlayableHero : MonoBehaviour {
         return false;
     }
 
-    public void Bump()
+    public void Bump(int side)
     {
-        ChangeState(new Bumped(this, 1));
+        ChangeState(new Bumped(this, 1, side));
     }
 
     public void Sauce()
@@ -299,10 +300,12 @@ public class Snared : PlayerState
     public Snared(PlayableHero master, float debuffTimer) : base(master) { this.debuffTimer = debuffTimer; }
     public override void Enter()
     {
+        Debug.Log("Snare Enter");
         myController.rgb.velocity = new Vector2(0, 0);
     }
     public override void Execute()
     {
+        Debug.Log("Snare Executer");
         if (debuffTimer > 0)
         {
             myController.rgb.velocity = new Vector2(0, myController.rgb.velocity.y);
@@ -375,10 +378,13 @@ public class Sauced : PlayerState
 
 public class Bumped : PlayerState
 {
-    public Bumped(PlayableHero master, float debuffTimer) : base(master) { this.debuffTimer = debuffTimer; }
+    private int sideBump;
+
+    public Bumped(PlayableHero master, float debuffTimer, int side) : base(master) { this.debuffTimer = debuffTimer; sideBump = side; }
     public override void Enter()
     {
-        myController.rgb.AddForce(new Vector2(myController.impulseForce, 0), ForceMode2D.Impulse);
+        //myController.rgb.AddForce(new Vector2(myController.impulseForce * sideBump, 0), ForceMode2D.Impulse);
+        myController.rgb.velocity = new Vector2(myController.impulseForce * sideBump, 0);
     }
     public override void Execute()
     {
@@ -415,7 +421,7 @@ public class Reversed : PlayerState
             }
             if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Jump"))
             {
-                myController.ChangeState(new Jump(myController, false, myController.currentState));
+                myController.ChangeState(new Jump(myController, true, myController.currentState));
             }
             if (Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") != 0)
             {

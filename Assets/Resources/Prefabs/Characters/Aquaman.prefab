@@ -99,12 +99,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8cea89efa8ed24ba0a42d524182384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sauceTimer: 0
-  snaredTimer: 0
-  reverseTimer: 0
+  sauceTimer: 5
+  snaredTimer: 2
+  reverseTimer: 10
+  impulseForce: 5
   speed: 5
   jumpHeight: 200
-  impulseForce: 0
   ground:
     serializedVersion: 2
     m_Bits: 256

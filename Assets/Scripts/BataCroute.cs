@@ -21,7 +21,13 @@ public class BataCroute : MonoBehaviour {
         Debug.Log(other.name);
         if (other.tag == "Player" && other.name != spawnerName)
         {
-            other.GetComponent<PlayableHero>().Bump();
+            int side;
+            GameObject batman = GameObject.Find("Char_Batman");
+            if (batman.transform.position.x > other.transform.position.x)
+                side = -1;
+            else
+                side = 1;
+            other.GetComponent<PlayableHero>().Bump(side);
 
             Destroy(gameObject);
         }

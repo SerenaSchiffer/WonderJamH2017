@@ -19,7 +19,7 @@ public class Web : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log(other.name);
-        if(other.tag == "Player" /*&& other.name != spawnerName*/)
+        if(other.tag == "Player" && other.name != spawnerName)
         {
             other.GetComponent<PlayableHero>().Snare();
 
