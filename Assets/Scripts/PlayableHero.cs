@@ -215,12 +215,17 @@ public class Jump : PlayerState
 
     public override void Execute()
     {
+        if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1") && myController.GetPowerDelay() <= 0)
+        {
+            myController.ChangeState(new CastPower1(myController, myController.currentState));
+        }
         if (Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") != 0)
             myController.rgb.velocity = new Vector2(Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") * myController.speed, myController.rgb.velocity.y); 
         else
         {
             myController.rgb.velocity = new Vector2(0, myController.rgb.velocity.y);
         }
+            myController.myAnimator.SetBool("isJumping", !myController.LookGround());       
 
         if (backToPreviousState)
        {
@@ -314,14 +319,16 @@ public class Snared : PlayerState
     public Snared(PlayableHero master, float debuffTimer) : base(master) { this.debuffTimer = debuffTimer; }
     public override void Enter()
     {
-        Debug.Log("Snare Enter");
         myController.rgb.velocity = new Vector2(0, 0);
         myController.feedbackSpecial = GameObject.Instantiate(Resources.Load("Prefabs/cheesyweb")) as GameObject;
         myController.feedbackSpecial.transform.parent = myController.transform;
     }
     public override void Execute()
     {
-        Debug.Log("Snare Executer");
+        if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1") && myController.GetPowerDelay() <= 0)
+        {
+            myController.ChangeState(new CastPower1(myController, myController.currentState));
+        }
         if (debuffTimer > 0)
         {
             myController.rgb.velocity = new Vector2(0, myController.rgb.velocity.y);
@@ -472,9 +479,18 @@ public class Reversed : PlayerState
 
 public class IsWet : PlayerState
 {
-    public IsWet(PlayableHero master) : base(master) {}
+    public int direction = 1;
+    public IsWet(PlayableHero master) : base(master) { direction = 1; }
     public override void Enter()
     {
+        if (myController.previousState.ToString() == "Snared")
+        {
+            myController.ChangeState(new Snared(myController, debuffTimer));
+        }
+        if(myController.previousState.ToString() == "Reversed")
+        {
+            direction = -1;
+        }
     }
     public override void Execute()
     {
@@ -484,7 +500,7 @@ public class IsWet : PlayerState
         }
         if (Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") != 0)
         {
-            myController.rgb.AddForce(new Vector2(Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") * 10, myController.rgb.velocity.y));
+            myController.rgb.AddForce(new Vector2(Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") * 10 * direction, myController.rgb.velocity.y));
             if (myController.rgb.velocity.x > myController.speed)
             {
                 myController.rgb.velocity = new Vector2(myController.speed, myController.rgb.velocity.y);
@@ -508,7 +524,6 @@ public class IsWet : PlayerState
 
 public class CastPower1 : PlayerState
 {
-    bool backToPreviousState;
     PlayerState previousState;
     float animTimer = 0.25f;
 
@@ -522,10 +537,7 @@ public class CastPower1 : PlayerState
 
     public override void Execute()
     {
-        if(backToPreviousState)
-        {
-            debuffTimer -= Time.deltaTime;
-        }
+        debuffTimer -= Time.deltaTime;
         if (animTimer > 0)
         {
             animTimer -= Time.deltaTime;
@@ -568,7 +580,8 @@ public class Dying : PlayerState
     {
         myController.GetComponent<BoxCollider2D>().enabled = true;
         myController.transform.position = myController.spawn.position;
-        GameObject.Destroy(deathParticles);
+        GameObject.Destroy(myController.feedbackSpecial);
+        myController.feedbackSpecial = null;
     }
 
 }
