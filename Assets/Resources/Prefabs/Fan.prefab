@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212875202568114060}
   - component: {fileID: 61981200612132688}
   - component: {fileID: 114197899735343784}
+  - component: {fileID: 95515026373383756}
   m_Layer: 0
   m_Name: Fan
   m_TagString: Untagged
@@ -67,6 +68,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.524368, y: 0.33}
   m_EdgeRadius: 0
+--- !u!95 &95515026373383756
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1780660021906694}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0bdc4094e1cda2043becdafd58d4c84c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114197899735343784
 MonoBehaviour:
   m_ObjectHideFlags: 1
