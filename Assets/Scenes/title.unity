@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 211407802}
   - component: {fileID: 211407801}
   - component: {fileID: 211407800}
+  - component: {fileID: 211407803}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -170,6 +171,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &211407803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 211407799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23cfea57e1926ae42b4b620e2c05f5c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &333052473
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,7 +482,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PRESS START
+  m_Text: PRESS JUMP
 --- !u!222 &1466152925
 CanvasRenderer:
   m_ObjectHideFlags: 0
