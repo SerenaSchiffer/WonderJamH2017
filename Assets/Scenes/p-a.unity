@@ -298,6 +298,51 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1743150697984532, guid: e9b508a6284626449b0fbace7ee7e693, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505652164990904, guid: e9b508a6284626449b0fbace7ee7e693, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662422566054596, guid: e9b508a6284626449b0fbace7ee7e693, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182498000294698, guid: e9b508a6284626449b0fbace7ee7e693, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1982564696888082, guid: e9b508a6284626449b0fbace7ee7e693, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455812861008410, guid: e9b508a6284626449b0fbace7ee7e693, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1536713375456720, guid: e9b508a6284626449b0fbace7ee7e693, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1514843090088408, guid: e9b508a6284626449b0fbace7ee7e693, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1690637452045402, guid: e9b508a6284626449b0fbace7ee7e693, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1813345051422284, guid: e9b508a6284626449b0fbace7ee7e693, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 61545035196371888, guid: e9b508a6284626449b0fbace7ee7e693,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228636228153784, guid: e9b508a6284626449b0fbace7ee7e693, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -316,6 +361,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1435659296}
+  - component: {fileID: 1435659297}
   m_Layer: 0
   m_Name: MapGenerator
   m_TagString: Untagged
@@ -336,6 +382,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1435659297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1435659295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02830db3e7ca1564487880c6dc9918e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseX: 0.4062081
+  baseY: -1.698032
+  towerSize: 5
+  numberOfFloor: 1
 --- !u!1 &1741644450
 GameObject:
   m_ObjectHideFlags: 0
