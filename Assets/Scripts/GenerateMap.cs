@@ -145,9 +145,15 @@ public class GenerateMap : MonoBehaviour {
             player1.GetComponent<PlayableHero>().spawn = tableFloor[actualFloor].transform.GetChild(1);
             player1.transform.position = player1.GetComponent<PlayableHero>().spawn.position;
             player1.GetComponent<PlayableHero>().ChangeState(new Idle(player1.GetComponent<PlayableHero>()));
+            player1.GetComponent<PlayableHero>().powerDelay = 0;
+            player1.GetComponent<PlayableHero>().cptPowerInLevel = 0;
+            player1.GetComponent<PlayableHero>().powerUsed = false;
             player2.GetComponent<PlayableHero>().spawn = tableFloor[actualFloor].transform.GetChild(1);
             player2.transform.position = player1.GetComponent<PlayableHero>().spawn.position;
             player2.GetComponent<PlayableHero>().ChangeState(new Idle(player2.GetComponent<PlayableHero>()));
+            player2.GetComponent<PlayableHero>().powerDelay = 0;
+            player2.GetComponent<PlayableHero>().cptPowerInLevel = 0;
+            player2.GetComponent<PlayableHero>().powerUsed = false;
             Camera.main.transform.Translate(Vector3.up * height);
             test = 3f;
         }
