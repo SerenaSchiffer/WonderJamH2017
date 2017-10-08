@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FollowParentFeedback : MonoBehaviour
 {
-
+    public float timer = 10f;
     // Use this for initialization
     void Start()
     {
@@ -15,5 +15,13 @@ public class FollowParentFeedback : MonoBehaviour
     void Update()
     {
         transform.position = transform.parent.position;
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4769446026716914}
   - component: {fileID: 198274684375309156}
   - component: {fileID: 199604140653738694}
-  - component: {fileID: 114835631215428102}
   m_Layer: 12
   m_Name: Spell_Ready_Particle
   m_TagString: Untagged
@@ -42,17 +41,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114835631215428102
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1201210142246852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b4fde551eb845c4a849777f7f356caa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!198 &198274684375309156
 ParticleSystem:
   m_ObjectHideFlags: 1
