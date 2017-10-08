@@ -363,7 +363,8 @@ MonoBehaviour:
   baseX: 0.4062081
   baseY: -1.698032
   towerSize: 5
-  numberOfFloor: 2
+  numberOfFloor: 3
+  tableFloor: []
 --- !u!1001 &1588582601
 Prefab:
   m_ObjectHideFlags: 0
@@ -545,7 +546,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1830433102729842, guid: 43c54246087ce1646be57a28a21367fa, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114664577691530142, guid: 43c54246087ce1646be57a28a21367fa,
         type: 2}
@@ -594,6 +595,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114664577691530142, guid: 2174769cfaa8f3a429c8f18a88f8aa53,
+        type: 2}
+      propertyPath: spawn
+      value: 
+      objectReference: {fileID: 1243123304}
     - target: {fileID: 1830433102729842, guid: 2174769cfaa8f3a429c8f18a88f8aa53, type: 2}
       propertyPath: m_IsActive
       value: 0
