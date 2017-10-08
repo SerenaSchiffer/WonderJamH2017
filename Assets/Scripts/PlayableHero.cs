@@ -18,6 +18,7 @@ public class PlayableHero : MonoBehaviour {
     public LayerMask ground;
     public Transform spawn;
     public Animator myAnimator;
+    public GameObject feedbackSpecial;
 
     public CurrentPlayer currentPlayer;
 
@@ -54,6 +55,7 @@ public class PlayableHero : MonoBehaviour {
         reverseSound = sounds[4];
 
         currentState = new Idle(this); /*playerAnimator = gameObject.GetComponent<Animator>()*/;
+        feedbackSpecial = null;
     }
 
     public void Update()
@@ -342,6 +344,8 @@ public class Sauced : PlayerState
     {
         myController.rgb.velocity = new Vector2(myController.rgb.velocity.x * 2, myController.rgb.velocity.y);
         myController.GetSauceSound().Play(44000);
+        myController.feedbackSpecial = GameObject.Instantiate(Resources.Load("Prefabs/SpriteSauceMask")) as GameObject;
+        myController.feedbackSpecial.transform.parent = myController.transform;
     }
     public override void Execute()
     {
@@ -384,7 +388,7 @@ public class Sauced : PlayerState
     }
     public override void Exit()
     {
-
+        GameObject.Destroy(myController.feedbackSpecial);
     }
 
 }
