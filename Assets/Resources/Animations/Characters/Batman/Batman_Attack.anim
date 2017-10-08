@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Aquaman_Attack
+  m_Name: Batman_Attack
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -91,7 +91,7 @@ AnimationClip:
     script: {fileID: 0}
   - curve:
     - time: 0
-      value: {fileID: 21300004, guid: 5563fb09a6c0d5943a9c7b3f8126c173, type: 3}
+      value: {fileID: 21300000, guid: 5563fb09a6c0d5943a9c7b3f8126c173, type: 3}
     attribute: m_Sprite
     path: Mask
     classID: 212
@@ -145,7 +145,7 @@ AnimationClip:
     - {fileID: 21300000, guid: 4450b7ce4316b494da6054c514bf3331, type: 3}
     - {fileID: 21300002, guid: 4450b7ce4316b494da6054c514bf3331, type: 3}
     - {fileID: 21300004, guid: 4450b7ce4316b494da6054c514bf3331, type: 3}
-    - {fileID: 21300004, guid: 5563fb09a6c0d5943a9c7b3f8126c173, type: 3}
+    - {fileID: 21300000, guid: 5563fb09a6c0d5943a9c7b3f8126c173, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
