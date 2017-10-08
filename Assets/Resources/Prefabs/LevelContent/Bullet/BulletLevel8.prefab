@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 200
-  timeToLive: 0.2
+  timeToLive: 0.85
 --- !u!212 &212602033660343820
 SpriteRenderer:
   m_ObjectHideFlags: 1
