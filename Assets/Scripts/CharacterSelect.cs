@@ -30,12 +30,15 @@ public class CharacterSelect : MonoBehaviour {
     int player2Choice = 1;
     int credits = 0;
 
+    AudioSource[] menuSounds;
+
 	// Use this for initialization
 	void Start () {
         coolDownP1 = false;
         coolDownP2 = false;
         P1Selected = false;
         P2Selected = false;
+        menuSounds = GetComponents<AudioSource>();
 	}
 
     int vraimod(float a, float b)
@@ -83,15 +86,32 @@ public class CharacterSelect : MonoBehaviour {
             coolDownP2 = false;
 
         if (Input.GetButtonDown("Player1Fire1") || Input.GetButtonDown("Player1Fire2") || Input.GetButtonDown("Player2Fire1") || Input.GetButtonDown("Player2Fire2"))
+        {
+            menuSounds[2].Play();
             credits++;
+        }
 
         creditsText.text = "CREDITS : " + credits + " ( " + credits * 3 + " FLOORS ) - SPECIAL TO ADD COIN";
         
         if (Input.GetButtonDown("Player1Jump") && credits > 0)
+        {
+            menuSounds[0].Play();
             P1Selected = true;
+        }
+        else if (Input.GetButtonDown("Player1Jump") && credits <= 0)
+        {
+            menuSounds[1].Play();
+        }
 
         if (Input.GetButtonDown("Player2Jump") && credits > 0)
+        {
+            menuSounds[0].Play();
             P2Selected = true;
+        }
+        else if (Input.GetButtonDown("Player1Jump") && credits <= 0)
+        {
+            menuSounds[1].Play();
+        }
         
         foreach (Text t in player1)
             t.color = Color.white;
