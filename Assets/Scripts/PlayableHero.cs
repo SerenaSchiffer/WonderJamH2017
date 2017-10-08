@@ -178,7 +178,7 @@ public class Idle : PlayerState
     {
         GameObject.Destroy(myController.feedbackSpecial);
         myController.feedbackSpecial = null;
-        myController.rgb.Sleep();
+        myController.rgb.velocity = Vector2.zero;
     } // Called once when entering current state
     public override void Execute()
     {
