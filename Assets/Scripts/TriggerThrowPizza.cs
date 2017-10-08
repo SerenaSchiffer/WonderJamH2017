@@ -19,6 +19,7 @@ public class TriggerThrowPizza : MonoBehaviour {
         if (other.gameObject.tag == "Player")
         {
             GetComponentInParent<PizzaThrow>().GoToPlayer(other.transform);
+            Destroy(gameObject);
         }
     }
 }
