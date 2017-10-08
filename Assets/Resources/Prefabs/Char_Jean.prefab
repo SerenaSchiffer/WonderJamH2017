@@ -72,7 +72,7 @@ Transform:
   m_GameObject: {fileID: 1830433102729842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.179, y: -0.29354, z: 0}
-  m_LocalScale: {x: 2.6, y: 2.6, z: 2.6}
+  m_LocalScale: {x: 4, y: 4, z: 2.6}
   m_Children:
   - {fileID: 4970163484242754}
   - {fileID: 4542807532401750}
@@ -178,11 +178,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2345fc6b032daf746b0efc00515bf001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSnared: 0
-  isSauced: 0
-  isReversed: 0
-  isSliding: 0
-  isBumped: 0
+  sauceTimer: 0
+  snaredTimer: 0
+  reverseTimer: 0
   speed: 5
   jumpHeight: 200
   impulseForce: 0
@@ -190,9 +188,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   spawn: {fileID: 0}
+  myAnimator: {fileID: 0}
   currentPlayer: 1
   rgb: {fileID: 0}
-  playerBody: {fileID: 0}
   webPrefab: {fileID: 0}
   webSpeed: 0
 --- !u!114 &114811584996992538
@@ -206,11 +204,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a4590327cc47b4aafd890b23e839a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSnared: 0
-  isSauced: 0
-  isReversed: 0
-  isSliding: 0
-  isBumped: 0
+  sauceTimer: 0
+  snaredTimer: 0
+  reverseTimer: 0
   speed: 5
   jumpHeight: 50
   impulseForce: 0
@@ -218,9 +214,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   spawn: {fileID: 0}
+  myAnimator: {fileID: 0}
   currentPlayer: 0
   rgb: {fileID: 0}
-  playerBody: {fileID: 0}
 --- !u!212 &212424762033250774
 SpriteRenderer:
   m_ObjectHideFlags: 1
