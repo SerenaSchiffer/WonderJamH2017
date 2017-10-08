@@ -19,34 +19,40 @@ public class SpiderManHero : PlayableHero
     public override void Spell1()
     {
         base.Spell1();
-
-        if (gameObject == players[0])
+        if (powerDelay <= 0)
         {
-            othPlayer = players[1];
-        }
-        else
-        {
-            othPlayer = players[0];
-        }
+            
+            if (gameObject == players[0])
+            {
+                othPlayer = players[1];
+            }
+            else
+            {
+                othPlayer = players[0];
+            }
 
-        GameObject web = Instantiate(webPrefab);
+            GameObject web = Instantiate(webPrefab);
 
-        Vector3 thisPlayerPosition = transform.position;
-        Vector3 velVector = othPlayer.transform.position - transform.position;
-        if (velVector.x >= 0)
-        {
-            thisPlayerPosition.x += 0.4f;
-        }
-        else
-        {
-            thisPlayerPosition.x -= 0.4f;
-        }
+            Vector3 thisPlayerPosition = transform.position;
+            Vector3 velVector = othPlayer.transform.position - transform.position;
+            if (velVector.x >= 0)
+            {
+                thisPlayerPosition.x += 0.4f;
+            }
+            else
+            {
+                thisPlayerPosition.x -= 0.4f;
+            }
 
-        web.transform.position = thisPlayerPosition;
-        web.GetComponent<Web>().SetSpawnerName(name);
-        web.GetComponent<Rigidbody2D>().velocity = velVector * webSpeed;
+            Debug.Log(velVector);
+            web.transform.position = thisPlayerPosition;
+            web.GetComponent<Web>().SetSpawnerName(name);
+            web.GetComponent<Rigidbody2D>().velocity = velVector * webSpeed;
+
+            cptPowerInLevel++;
+            powerUsed = true;
+        }
     }
-
 }
     
 

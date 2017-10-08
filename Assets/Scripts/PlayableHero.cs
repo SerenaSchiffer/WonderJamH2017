@@ -24,9 +24,15 @@ public class PlayableHero : MonoBehaviour {
     public Rigidbody2D rgb;
     bool isJumping;
 
+    protected int cptPowerInLevel;
+    protected float powerDelay;
+    protected bool powerUsed;
+
     public virtual void Awake()
     {
-
+        cptPowerInLevel = 0;
+        powerDelay = 0;
+        powerUsed = false;
     }
 
     [HideInInspector] public PlayerState currentState;
@@ -42,9 +48,17 @@ public class PlayableHero : MonoBehaviour {
 
     public void Update()
     {
-        currentState.Execute();
+        if (powerDelay <= 0 && powerUsed)
+        {
+            powerDelay = 2 * cptPowerInLevel;
+            powerUsed = false;
+        }
+        else
+        {
+            powerDelay -= Time.deltaTime;
+        }
 
-        Debug.Log(currentState.ToString());
+        currentState.Execute();
     }
 
     public void ChangeState(PlayerState next)
@@ -218,7 +232,6 @@ public class Move : PlayerState
     public Move(PlayableHero master, int direction) : base(master) { this.direction = direction; }
     public override void Enter()
     {
-        Debug.Log("je marche");
         myController.myAnimator.SetBool("isMoving", true);
         myController.rgb.velocity = new Vector2(Input.GetAxis(myController.currentPlayer.ToString() + "Horizontal") * myController.speed*direction, myController.rgb.velocity.y);
     }
@@ -448,8 +461,8 @@ public class CastPower1 : PlayerState
     public CastPower1(PlayableHero master, PlayerState previousState) : base(master) { this.previousState = previousState;}
     public override void Enter()  // Called once when entering current state
     {
-        //anim.SetTrigger("castSpell");
-        //animTimer = anim.GetCurrentAnimatorStateInfo(0).length;
+        anim.SetTrigger("castSpell");
+        animTimer = anim.GetCurrentAnimatorStateInfo(0).length;
         myController.Spell1();
     }
 
