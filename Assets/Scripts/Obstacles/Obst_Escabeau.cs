@@ -24,17 +24,20 @@ public class Obst_Escabeau : MonoBehaviour {
             int rdm = Random.Range(0, 3);
             transform.GetChild(rdm).gameObject.tag = "KillingMachine";
             transform.GetChild(rdm).GetComponent<Rigidbody2D>().velocity = transform.right * throwForce;
+            transform.GetChild(rdm).GetComponent<Obst_Escabeau_Step>().SetDestroy();
         }
         else if(cpt == 1)
         {
             int rdm = Random.Range(0, 2);
             transform.GetChild(rdm).gameObject.tag = "KillingMachine";
             transform.GetChild(rdm).GetComponent<Rigidbody2D>().velocity = transform.right * throwForce;
+            transform.GetChild(rdm).GetComponent<Obst_Escabeau_Step>().SetDestroy();
         }
         else
         {
             transform.GetChild(0).gameObject.tag = "KillingMachine";
             transform.GetChild(0).GetComponent<Rigidbody2D>().velocity = transform.right * throwForce;
+            transform.GetChild(0).GetComponent<Obst_Escabeau_Step>().SetDestroy();
         }
         
     }
