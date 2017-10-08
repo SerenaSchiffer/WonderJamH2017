@@ -33,7 +33,21 @@ public class Obst_FallingCeilingPiece : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.tag == "Ground" || (coll.gameObject.tag == "under" && gravityScaleFalling < 0))
+        if(coll.gameObject.tag == "under" && gravityScaleFalling < 0)
+        {
+            if (canReappear)
+            {
+                transform.position = initialPosition;
+                GetComponent<Rigidbody2D>().gravityScale = 0;
+                GetComponent<Rigidbody2D>().Sleep();
+                transform.rotation = initialRotation;
+                sprite.enabled = alwaysVisible;
+                theCollider.enabled = false;
+            }
+            else
+                Destroy(gameObject);
+        }
+        if (coll.gameObject.tag == "Ground" && gravityScaleFalling >= 0)
         {
             if(canReappear)
             {
