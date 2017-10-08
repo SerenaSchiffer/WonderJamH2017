@@ -5,10 +5,11 @@ using UnityEngine;
 public class BataCroute : MonoBehaviour {
 
     private string spawnerName;
+    private AudioSource sound;
 
 	// Use this for initialization
 	void Start () {
-		
+        sound = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -21,6 +22,7 @@ public class BataCroute : MonoBehaviour {
         Debug.Log(other.name);
         if (other.tag == "Player" && other.name != spawnerName)
         {
+            sound.Play();
             int side;
             GameObject batman = GameObject.Find("Char_Batman");
             if (batman.transform.position.x > other.transform.position.x)

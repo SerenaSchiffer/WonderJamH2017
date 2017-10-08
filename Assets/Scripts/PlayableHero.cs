@@ -24,17 +24,20 @@ public class PlayableHero : MonoBehaviour {
     public Rigidbody2D rgb;
     bool isJumping;
     
-    protected AudioSource[] powerSounds;
-    public int cptPowerInLevel;
-    public float powerDelay;
-    public bool powerUsed;
+    protected AudioSource[] sounds;
+    private AudioSource deathSound;
+    private AudioSource sauceSound;
+    private AudioSource reverseSound;
+
+    protected int cptPowerInLevel;
+    protected float powerDelay;
+    protected bool powerUsed;
 
     public virtual void Awake()
     {
         cptPowerInLevel = 0;
         powerDelay = 0;
         powerUsed = false;
-        powerSounds = GetComponents<AudioSource>();
     }
 
     [HideInInspector] public PlayerState currentState;
@@ -45,6 +48,11 @@ public class PlayableHero : MonoBehaviour {
     {
         rgb = GetComponent<Rigidbody2D>();
         myAnimator = gameObject.GetComponent<Animator>();
+        sounds = GetComponents<AudioSource>();
+        deathSound = sounds[2];
+        sauceSound = sounds[3];
+        reverseSound = sounds[4];
+
         currentState = new Idle(this); /*playerAnimator = gameObject.GetComponent<Animator>()*/;
     }
 
@@ -141,6 +149,10 @@ public class PlayableHero : MonoBehaviour {
         ChangeState(new Dying(this));
     }
 
+    public AudioSource GetDeathSound() { return deathSound; }
+    public AudioSource GetSauceSound() { return sauceSound; }
+    public AudioSource GetReverseSound() { return reverseSound; }
+    public float GetPowerDelay() { return powerDelay; }
 }
 
 // Basic container for player states
@@ -163,8 +175,7 @@ public class Idle : PlayerState
     public override void Enter() { } // Called once when entering current state
     public override void Execute()
     {
-        Debug.Log(myController.powerDelay);
-        if(Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1") && myController.powerDelay <= 0)
+        if(Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1") && myController.GetPowerDelay() <= 0)
         {
             myController.ChangeState(new CastPower1(myController, myController.currentState));
         }
@@ -262,7 +273,7 @@ public class Move : PlayerState
     }
     public override void Execute()
     {
-        if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1") && myController.powerDelay <= 0)
+        if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1") && myController.GetPowerDelay() <= 0)
         {
             myController.ChangeState(new CastPower1(myController, myController.previousState));
         }
@@ -330,13 +341,14 @@ public class Sauced : PlayerState
     public override void Enter()
     {
         myController.rgb.velocity = new Vector2(myController.rgb.velocity.x * 2, myController.rgb.velocity.y);
+        myController.GetSauceSound().Play(44000);
     }
     public override void Execute()
     {
         if(debuffTimer > 0)
         {
             Debug.Log("testa");
-            if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1") && myController.powerDelay <= 0)
+            if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1") && myController.GetPowerDelay() <= 0)
             {
                 myController.ChangeState(new CastPower1(myController, myController.currentState));
             }
@@ -410,13 +422,13 @@ public class Reversed : PlayerState
     public Reversed(PlayableHero master, float debuffTimer) : base(master) { this.debuffTimer = debuffTimer; }
     public override void Enter()
     {
-
+        myController.GetReverseSound().Play(44000);
     }
     public override void Execute()
     {
         if (debuffTimer > 0)
         {
-            if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1") && myController.powerDelay <= 0)
+            if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1") && myController.GetPowerDelay() <= 0)
             {
                 myController.ChangeState(new CastPower1(myController, myController.previousState));
             }
@@ -454,7 +466,7 @@ public class IsWet : PlayerState
     }
     public override void Execute()
     {
-        if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1") && myController.powerDelay <= 0)
+        if (Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1") && myController.GetPowerDelay() <= 0)
         {
             myController.ChangeState(new CastPower1(myController, myController.currentState));
         }
@@ -520,6 +532,7 @@ public class Dying : PlayerState
     public Dying(PlayableHero master) : base(master) { respawnTimer = 0.5f; }
     public override void Enter()
     {
+        myController.GetDeathSound().Play();
         deathParticles = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/Particle_Death"));
         deathParticles.transform.position = myController.transform.position;
         myController.GetComponent<BoxCollider2D>().enabled = false;

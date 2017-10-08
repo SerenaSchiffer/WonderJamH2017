@@ -46,7 +46,7 @@ public class SpiderManHero : PlayableHero
 
 
             int idSound = (int)Mathf.Round(Random.Range(0f, 1f));
-            powerSounds[idSound].Play();
+            sounds[idSound].Play();
 
             web.transform.position = thisPlayerPosition;
             web.GetComponent<Web>().SetSpawnerName(name);

@@ -5,10 +5,11 @@ using UnityEngine;
 public class Web : MonoBehaviour {
 
     private string spawnerName;
+    private AudioSource sound;
 
 	// Use this for initialization
 	void Start () {
-		
+        sound = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -21,6 +22,7 @@ public class Web : MonoBehaviour {
         Debug.Log(other.name);
         if(other.tag == "Player" && other.name != spawnerName)
         {
+            sound.Play();
             other.GetComponent<PlayableHero>().Snare();
 
             Destroy(gameObject);
