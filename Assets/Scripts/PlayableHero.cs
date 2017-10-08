@@ -71,9 +71,9 @@ public class PlayableHero : MonoBehaviour {
             else
                 ui.ui_power_cooldown_p1.text = "";
         }
-        else if (currentPlayer == CurrentPlayer.Player1)
+        else if (currentPlayer == CurrentPlayer.Player2)
         {
-            ShowPoints ui = GameObject.Find("PLAYER 2").GetComponent<ShowPoints>();
+            ShowPoints ui = GameObject.Find("PLAYER 1").GetComponent<ShowPoints>();
             if (powerDelay > 0)
                 ui.ui_power_cooldown_p2.text = (int)powerDelay + "s";
             else
