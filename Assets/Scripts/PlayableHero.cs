@@ -476,19 +476,32 @@ public class CastPower1 : PlayerState
 
 public class Dying : PlayerState
 {
-    public Dying(PlayableHero master) : base(master) {}
+    float respawnTimer;
+    GameObject deathParticles;
+    public Dying(PlayableHero master) : base(master) { respawnTimer = 0.5f; }
     public override void Enter()
     {
-        //start death animation
+        deathParticles = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/Particle_Death"));
+        deathParticles.transform.position = myController.transform.position;
+        myController.GetComponent<BoxCollider2D>().enabled = false;
     }
     public override void Execute()
     {
         //At the end of animation
-        myController.ChangeState(new Idle(myController));
+        if (respawnTimer > 0)
+        {
+            respawnTimer -= Time.deltaTime;
+        }
+        else
+        {
+            myController.ChangeState(new Idle(myController));
+        }
     }
     public override void Exit()
     {
+        myController.GetComponent<BoxCollider2D>().enabled = true;
         myController.transform.position = myController.spawn.position;
+        GameObject.Destroy(deathParticles);
     }
 
 }
