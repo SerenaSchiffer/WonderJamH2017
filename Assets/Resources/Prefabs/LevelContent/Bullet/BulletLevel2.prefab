@@ -24,7 +24,11 @@ GameObject:
   - component: {fileID: 50016507849197166}
   - component: {fileID: 114645643729710204}
   m_Layer: 11
+<<<<<<< HEAD:Assets/Resources/Prefabs/LevelContent/Bullet/BulletLevel2.prefab
   m_Name: BulletLevel2
+=======
+  m_Name: BulletRed
+>>>>>>> 534ed3a2a90d1a021933f276b078c64e2f745e00:Assets/Resources/Prefabs/LevelContent/Bullet/BulletRed.prefab
   m_TagString: KillingMachine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

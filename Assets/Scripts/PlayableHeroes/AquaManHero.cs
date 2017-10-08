@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AquaManHero : PlayableHero {
 
+    AudioSource powerSound;
+
     GameObject[] players;
     GameObject othPlayer;
 
@@ -11,6 +13,7 @@ public class AquaManHero : PlayableHero {
     {
         base.Awake();
         players = GameObject.FindGameObjectsWithTag("Player");
+        powerSound = GetComponent<AudioSource>();
     }
 
     public override void Spell1()
@@ -27,6 +30,9 @@ public class AquaManHero : PlayableHero {
             {
                 othPlayer = players[0];
             }
+
+            int idSound = (int)Mathf.Round(Random.Range(0f, 1f));
+            powerSounds[idSound].Play();
 
             othPlayer.GetComponent<PlayableHero>().Sauce();
             cptPowerInLevel++;

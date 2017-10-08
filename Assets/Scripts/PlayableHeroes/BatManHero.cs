@@ -7,6 +7,8 @@ public class BatManHero : PlayableHero {
     public GameObject bataCroutePrefab;
     public float bataCrouteSpeed;
 
+    
+
     GameObject[] players;
     GameObject othPlayer;
 
@@ -43,6 +45,9 @@ public class BatManHero : PlayableHero {
             {
                 thisPlayerPosition.x -= 0.4f;
             }
+
+            int idSound = (int)Mathf.Round(Random.Range(0f, 1f));
+            powerSounds[idSound].Play();
 
             web.transform.position = thisPlayerPosition;
             web.GetComponent<BataCroute>().SetSpawnerName(name);
