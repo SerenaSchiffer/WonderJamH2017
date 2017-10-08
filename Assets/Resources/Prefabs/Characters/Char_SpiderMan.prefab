@@ -71,7 +71,7 @@ Transform:
   m_GameObject: {fileID: 1830433102729842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.39208364, y: 0.794919, z: 0}
-  m_LocalScale: {x: 2.6, y: 2.6, z: 2.6}
+  m_LocalScale: {x: 4, y: 4, z: 2.6}
   m_Children:
   - {fileID: 4970163484242754}
   - {fileID: 4542807532401750}
@@ -181,7 +181,7 @@ MonoBehaviour:
   snaredTimer: 0
   reverseTimer: 0
   speed: 5
-  jumpHeight: 200
+  jumpHeight: 350
   impulseForce: 0
   ground:
     serializedVersion: 2
