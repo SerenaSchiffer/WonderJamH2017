@@ -8,6 +8,7 @@ TagManager:
   - under
   - KillingMachine
   - Travailleur
+  - Generator
   layers:
   - Default
   - TransparentFX
