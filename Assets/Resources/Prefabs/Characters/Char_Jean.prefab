@@ -583,16 +583,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sauceTimer: 5
-  snaredTimer: 10
+  snaredTimer: 3
   reverseTimer: 10
   impulseForce: 10
   speed: 5
-  jumpHeight: 350
+  jumpHeight: 250
   ground:
     serializedVersion: 2
     m_Bits: 256
   spawn: {fileID: 0}
   myAnimator: {fileID: 0}
+  feedbackSpecial: {fileID: 0}
   currentPlayer: 0
   rgb: {fileID: 0}
 --- !u!212 &212424762033250774
