@@ -24,12 +24,12 @@ public class BataCroute : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other.name);
+        Debug.Log(spawnerName);
         if (other.tag == "Player" && other.name != spawnerName)
         {
             sound.Play();
             int side;
-            GameObject batman = GameObject.Find("Char_Batman");
+            GameObject batman = GameObject.Find(spawnerName);
             if (batman.transform.position.x > other.transform.position.x)
                 side = -1;
             else
