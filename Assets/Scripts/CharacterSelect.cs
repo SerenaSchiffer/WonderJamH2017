@@ -109,7 +109,7 @@ public class CharacterSelect : MonoBehaviour {
             nombreEtages = credits * 3;
             player1Char = (Characters)player1Choice;
             player2Char = (Characters)player2Choice;
-            SceneManager.LoadScene("MainGameLoop");
+            SceneManager.LoadScene("p-a");
         }
     }
 }

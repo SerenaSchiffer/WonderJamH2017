@@ -44,7 +44,7 @@ public class PlayableHero : MonoBehaviour {
     [HideInInspector] public PlayerState previousState;
     //[HideInInspector] public Animator playerAnimator;
 
-    public void Start()
+    public virtual void Start()
     {
         rgb = GetComponent<Rigidbody2D>();
         myAnimator = gameObject.GetComponent<Animator>();

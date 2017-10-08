@@ -7,9 +7,9 @@ public class ProfXHero : PlayableHero {
     GameObject[] players;
     GameObject othPlayer;
 
-    public override void Awake()
+    public override void Start()
     {
-        base.Awake();
+        base.Start();
         players = GameObject.FindGameObjectsWithTag("Player");
     }
 
