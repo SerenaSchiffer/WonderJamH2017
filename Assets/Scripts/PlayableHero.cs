@@ -174,7 +174,12 @@ public class Idle : PlayerState
 {
     public Idle(PlayableHero master) : base(master) { }
 
-    public override void Enter() { } // Called once when entering current state
+    public override void Enter()
+    {
+        GameObject.Destroy(myController.feedbackSpecial);
+        myController.feedbackSpecial = null;
+        myController.rgb.Sleep();
+    } // Called once when entering current state
     public override void Execute()
     {
         if(Input.GetButtonDown(myController.currentPlayer.ToString() + "Fire1") && myController.GetPowerDelay() <= 0)
@@ -338,8 +343,6 @@ public class Snared : PlayerState
         else
         {
             myController.ChangeState(new Idle(myController));
-            GameObject.Destroy(myController.feedbackSpecial);
-            myController.feedbackSpecial = null;
         }
     }
     public override void Exit()
@@ -409,8 +412,6 @@ public class Sauced : PlayerState
         }
         else
         {
-            GameObject.Destroy(myController.feedbackSpecial);
-            myController.feedbackSpecial = null;
             myController.ChangeState(new Idle(myController));
         }
     }
@@ -497,8 +498,6 @@ public class Reversed : PlayerState
     }
     public override void Exit()
     {
-        GameObject.Destroy(myController.feedbackSpecial);
-        myController.feedbackSpecial = null;
         myController.myAnimator.SetBool("isMoving", false);
     }
 
