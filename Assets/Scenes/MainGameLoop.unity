@@ -376,7 +376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseX: 0.4062081
   baseY: -1.698032
-  towerSize: 8
+  towerSize: 1
   numberOfFloor: 6
   tableFloor: []
   player1: {fileID: 0}

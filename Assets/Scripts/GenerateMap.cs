@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GenerateMap : MonoBehaviour {
@@ -19,9 +20,11 @@ public class GenerateMap : MonoBehaviour {
     AudioSource audio;
     // Use this for initialization
     void Start () {
+        towerSize = CharacterSelect.nombreEtages;
         height = 2f * Camera.main.orthographicSize;
         tableFloor = new GameObject[towerSize];
         audio = GetComponent<AudioSource>();
+        
 
         for (int i = 0; i < towerSize;i++)
         {
@@ -134,16 +137,17 @@ public class GenerateMap : MonoBehaviour {
         }
         if (tweak == 3)
         {
-            //Endgame;
-            Debug.Log("fini");
+            SceneManager.LoadScene("EndScene");
         }
         else
         {
             audio.Play();
             player1.GetComponent<PlayableHero>().spawn = tableFloor[actualFloor].transform.GetChild(1);
             player1.transform.position = player1.GetComponent<PlayableHero>().spawn.position;
+            player1.GetComponent<PlayableHero>().ChangeState(new Idle(player1.GetComponent<PlayableHero>()));
             player2.GetComponent<PlayableHero>().spawn = tableFloor[actualFloor].transform.GetChild(1);
             player2.transform.position = player1.GetComponent<PlayableHero>().spawn.position;
+            player2.GetComponent<PlayableHero>().ChangeState(new Idle(player2.GetComponent<PlayableHero>()));
             Camera.main.transform.Translate(Vector3.up * height);
             test = 3f;
         }
