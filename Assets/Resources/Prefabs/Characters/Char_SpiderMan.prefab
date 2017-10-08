@@ -182,7 +182,7 @@ MonoBehaviour:
   reverseTimer: 0
   speed: 5
   jumpHeight: 350
-  impulseForce: 0
+  impulseForce: 5
   ground:
     serializedVersion: 2
     m_Bits: 256
@@ -191,7 +191,7 @@ MonoBehaviour:
   currentPlayer: 0
   rgb: {fileID: 0}
   webPrefab: {fileID: 1109153058315894, guid: 1d9769b6c4550734bbd38b820c270e6a, type: 2}
-  webSpeed: 0
+  webSpeed: 8
 --- !u!212 &212424762033250774
 SpriteRenderer:
   m_ObjectHideFlags: 1

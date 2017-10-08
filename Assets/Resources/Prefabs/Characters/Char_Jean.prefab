@@ -38,7 +38,6 @@ GameObject:
   - component: {fileID: 212634022200704754}
   - component: {fileID: 61295245647249788}
   - component: {fileID: 50506041304478470}
-  - component: {fileID: 114664577691530142}
   - component: {fileID: 95599893938488526}
   - component: {fileID: 114811584996992538}
   m_Layer: 12
@@ -167,32 +166,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114664577691530142
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1830433102729842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2345fc6b032daf746b0efc00515bf001, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sauceTimer: 0
-  snaredTimer: 0
-  reverseTimer: 0
-  speed: 5
-  jumpHeight: 200
-  impulseForce: 0
-  ground:
-    serializedVersion: 2
-    m_Bits: 256
-  spawn: {fileID: 0}
-  myAnimator: {fileID: 0}
-  currentPlayer: 1
-  rgb: {fileID: 0}
-  webPrefab: {fileID: 0}
-  webSpeed: 0
 --- !u!114 &114811584996992538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -209,7 +182,7 @@ MonoBehaviour:
   reverseTimer: 0
   speed: 5
   jumpHeight: 350
-  impulseForce: 0
+  impulseForce: 5
   ground:
     serializedVersion: 2
     m_Bits: 256

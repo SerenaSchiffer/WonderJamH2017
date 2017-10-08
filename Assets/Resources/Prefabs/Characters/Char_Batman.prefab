@@ -182,7 +182,7 @@ MonoBehaviour:
   reverseTimer: 0
   speed: 5
   jumpHeight: 350
-  impulseForce: 0
+  impulseForce: 5
   ground:
     serializedVersion: 2
     m_Bits: 256
@@ -192,7 +192,7 @@ MonoBehaviour:
   rgb: {fileID: 0}
   bataCroutePrefab: {fileID: 1763865994555692, guid: 050659ab8b7344a419cfa50a96b1731b,
     type: 2}
-  bataCrouteSpeed: 0
+  bataCrouteSpeed: 8
 --- !u!212 &212424762033250774
 SpriteRenderer:
   m_ObjectHideFlags: 1

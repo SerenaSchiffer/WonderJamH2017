@@ -182,7 +182,7 @@ MonoBehaviour:
   reverseTimer: 0
   speed: 5
   jumpHeight: 350
-  impulseForce: 0
+  impulseForce: 5
   ground:
     serializedVersion: 2
     m_Bits: 256
