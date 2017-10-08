@@ -120,8 +120,6 @@ public class CharacterSelect : MonoBehaviour {
         
         player1[player1Choice].color = ( P1Selected == true ? Color.white : Color.white);
         player2[player2Choice].color = ( P2Selected == true ? Color.white : Color.white);
-        player1[player2Choice].color = Color.black;
-        player2[player1Choice].color = Color.black;
 
 
         if(P1Selected && P2Selected)
