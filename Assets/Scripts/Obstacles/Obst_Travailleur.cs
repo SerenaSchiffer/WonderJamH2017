@@ -34,6 +34,9 @@ public class Obst_Travailleur : MonoBehaviour {
                 if (transform.position.x > maxLeft)
                 {
                     GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, GetComponent<Rigidbody2D>().velocity.y);
+                    GetComponent<SpriteRenderer>().flipX = true;
+                    if(transform.childCount > 0)
+                        transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
                 }
                 else
                 {
@@ -45,6 +48,9 @@ public class Obst_Travailleur : MonoBehaviour {
                 if (transform.position.x < maxRight)
                 {
                     GetComponent<Rigidbody2D>().velocity = new Vector2(speed, GetComponent<Rigidbody2D>().velocity.y);
+                    GetComponent<SpriteRenderer>().flipX = false;
+                    if (transform.childCount > 0)
+                        transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
                 }
                 else
                 {
