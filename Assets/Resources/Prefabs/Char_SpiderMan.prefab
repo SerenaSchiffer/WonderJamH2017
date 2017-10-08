@@ -190,7 +190,7 @@ MonoBehaviour:
   myAnimator: {fileID: 0}
   currentPlayer: 0
   rgb: {fileID: 0}
-  webPrefab: {fileID: 0}
+  webPrefab: {fileID: 1109153058315894, guid: 1d9769b6c4550734bbd38b820c270e6a, type: 2}
   webSpeed: 0
 --- !u!212 &212424762033250774
 SpriteRenderer:
