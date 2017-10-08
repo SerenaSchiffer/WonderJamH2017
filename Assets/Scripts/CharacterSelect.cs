@@ -45,7 +45,7 @@ public class CharacterSelect : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (Input.GetAxis("Player1Horizontal") > 0.5f && !coolDownP1 && !P1Selected)
+        if (Input.GetAxis("Player1Vertical") > 0.5f && !coolDownP1 && !P1Selected)
         {
             player1Choice = vraimod( player1Choice + 1, 4 );
             if (player1Choice == player2Choice)
@@ -53,7 +53,7 @@ public class CharacterSelect : MonoBehaviour {
             coolDownP1 = true;
         }
         
-        if (Input.GetAxis("Player1Horizontal") < -0.5f && !coolDownP1 && !P1Selected)
+        if (Input.GetAxis("Player1Vertical") < -0.5f && !coolDownP1 && !P1Selected)
         {
             player1Choice = vraimod(player1Choice - 1, 4);
             if (player1Choice == player2Choice)
@@ -61,10 +61,10 @@ public class CharacterSelect : MonoBehaviour {
             coolDownP1 = true;
         }
 
-        if (Input.GetAxis("Player1Horizontal") == 0)
+        if (Input.GetAxis("Player1Vertical") == 0)
             coolDownP1 = false;
 
-        if (Input.GetAxis("Player2Horizontal") > 0.5f && !coolDownP2 && !P2Selected)
+        if (Input.GetAxis("Player2Vertical") > 0.5f && !coolDownP2 && !P2Selected)
         {
             player2Choice = vraimod(player2Choice + 1, 4);
             if (player2Choice == player1Choice)
@@ -72,14 +72,14 @@ public class CharacterSelect : MonoBehaviour {
             coolDownP2 = true;
         }
 
-        if (Input.GetAxis("Player2Horizontal") < -0.5f && !coolDownP2 && !P2Selected)
+        if (Input.GetAxis("Player2Vertical") < -0.5f && !coolDownP2 && !P2Selected)
         {
             player2Choice = vraimod(player2Choice - 1, 4);
             if (player2Choice == player1Choice)
                 player2Choice = vraimod(player2Choice - 1, 4);
             coolDownP2 = true;
         }
-        if (Input.GetAxis("Player2Horizontal") == 0)
+        if (Input.GetAxis("Player2Vertical") == 0)
             coolDownP2 = false;
 
         if (Input.GetButtonDown("Player1Fire1") || Input.GetButtonDown("Player1Fire2") || Input.GetButtonDown("Player2Fire1") || Input.GetButtonDown("Player2Fire2"))

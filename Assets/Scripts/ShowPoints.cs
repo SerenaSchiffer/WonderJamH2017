@@ -12,10 +12,12 @@ public class Money
 public class ShowPoints : MonoBehaviour {
     public Text ui_money_player1;
     public Text ui_money_player2;
+    public Text ui_current_floor;
 
     void Update()
     {
-        ui_money_player1.text = "PLAYER 1 : " + Money.moneyP1 + "$";
-        ui_money_player2.text = "PLAYER 2 : " + Money.moneyP2 + "$";
+        ui_money_player1.text = "P1      " + Money.moneyP1 + "$";
+        ui_money_player2.text = "P2      " + Money.moneyP2 + "$";
+        ui_current_floor.text = "FLOOR " + (GenerateMap.actualFloor+1);
     }
 }
