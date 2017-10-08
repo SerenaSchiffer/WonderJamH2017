@@ -18,10 +18,8 @@ public class DeliverPizza : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            //other.GetComponent<PlayableHero>.ChangeLevel();
-            //
-            ///////TODO
-            //
+            GameObject generator = GameObject.FindGameObjectWithTag("Generator");
+            generator.GetComponent<GenerateMap>().GetUp();
         }
     }
 }
