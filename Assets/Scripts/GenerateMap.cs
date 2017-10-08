@@ -20,6 +20,7 @@ public class GenerateMap : MonoBehaviour {
     AudioSource audio;
     // Use this for initialization
     void Start () {
+        actualFloor = 0;
         towerSize = CharacterSelect.nombreEtages;
         height = 2f * Camera.main.orthographicSize;
         tableFloor = new GameObject[towerSize];

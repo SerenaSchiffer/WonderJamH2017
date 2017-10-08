@@ -39,6 +39,8 @@ public class CharacterSelect : MonoBehaviour {
         P1Selected = false;
         P2Selected = false;
         menuSounds = GetComponents<AudioSource>();
+        Money.moneyP1 = 0.00f;
+        Money.moneyP2 = 0.00f;
 	}
 
     int vraimod(float a, float b)
