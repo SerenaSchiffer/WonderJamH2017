@@ -5,6 +5,7 @@ using UnityEngine;
 public class Obst_Fan : MonoBehaviour {
 
     public float force;
+    public bool pushKillingMachine;
 	// Use this for initialization
 	void Start () {
 	}
@@ -16,7 +17,7 @@ public class Obst_Fan : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D coll)
     {
-        if (coll.gameObject.tag == "Player")
+        if (coll.gameObject.tag == "Player" || (pushKillingMachine && coll.gameObject.tag == "KillingMachine"))
         {
             coll.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.right * force);
         }
