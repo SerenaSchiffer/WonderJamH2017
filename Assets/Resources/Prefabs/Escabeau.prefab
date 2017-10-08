@@ -20,10 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4733116068375078}
   - component: {fileID: 212296175624071498}
-  - component: {fileID: 60070526152827494}
-  m_Layer: 0
+  - component: {fileID: 60499922825646942}
+  m_Layer: 8
   m_Name: Escabeau
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,14 +34,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1631430686396336}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.17, y: 1.01, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.405208, y: -1.867968, z: 0}
+  m_LocalScale: {x: -6, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &60070526152827494
+--- !u!60 &60499922825646942
 PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -65,29 +65,17 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.21601868, y: -0.20314567}
-      - {x: 0.21221702, y: -0.09938562}
-      - {x: 0.13851961, y: -0.09874644}
-      - {x: 0.13851961, y: -0.09431269}
-      - {x: 0.13231342, y: 0.02834944}
-      - {x: 0.07531707, y: 0.03037266}
-      - {x: 0.07556629, y: 0.15618074}
-      - {x: -0.042120617, y: 0.15622894}
-      - {x: -0.05979204, y: 0.203795}
-      - {x: -0.14, y: 0.205}
-      - {x: -0.17896383, y: -0.019433737}
+    - - {x: 0.21125135, y: -0.20689002}
+      - {x: 0.21063495, y: -0.10755339}
+      - {x: 0.015013298, y: 0.14485222}
+      - {x: -0.1310815, y: 0.14382893}
       - {x: -0.21, y: -0.205}
       - {x: -0.17999999, y: -0.205}
-      - {x: -0.1088454, y: -0.2009992}
-      - {x: -0.10665083, y: -0.20351426}
-      - {x: 0.049999997, y: -0.205}
-      - {x: 0.16, y: -0.205}
     - - {x: -0.13, y: -0.044999998}
       - {x: 0, y: -0.055}
       - {x: -0.14, y: -0.055}
     - - {x: -0.099999994, y: 0.095}
       - {x: -0.08, y: 0.085}
-      - {x: -0.049999997, y: 0.044999998}
       - {x: -0.11, y: 0.044999998}
 --- !u!212 &212296175624071498
 SpriteRenderer:
