@@ -10,11 +10,12 @@ public class GenerateMap : MonoBehaviour {
     public int numberOfFloor;
     public GameObject[] tableFloor;
     public GameObject player1, player2;
-    public int actualFloor = 0;
+    public static int actualFloor = 0;
     public float test = 0f;
     public GameObject brickWall;
     public float targetImagey;
     float height;
+    float tweak = 1;
     // Use this for initialization
     void Start () {
         height = 2f * Camera.main.orthographicSize;
@@ -97,7 +98,7 @@ public class GenerateMap : MonoBehaviour {
 	void Update () {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            GetUp();
+            GetUp(CurrentPlayer.Player1);
         }
 		if(test > 0)
         {
@@ -113,19 +114,37 @@ public class GenerateMap : MonoBehaviour {
         }
 	}
 
-    public void GetUp()
+    public void GetUp(CurrentPlayer actualPlayer)
     {
         actualFloor++;
-        player1.GetComponent<PlayableHero>().spawn = tableFloor[actualFloor].transform.GetChild(1);
-        player1.transform.position = player1.GetComponent<PlayableHero>().spawn.position;
-        player2.GetComponent<PlayableHero>().spawn = tableFloor[actualFloor].transform.GetChild(1);
-        player2.transform.position = player1.GetComponent<PlayableHero>().spawn.position;
-        Camera.main.transform.Translate(Vector3.up * height);
-        test = 3f;
+        Debug.Log(tableFloor.Length);
+        if (actualFloor+1 > tableFloor.Length)
+        {
+            tweak = 3;
+        }
+        if (actualPlayer == CurrentPlayer.Player1)
+        {
+            Money.moneyP1 += 100.00f * tweak;
+        }
+        else
+        {
+            Money.moneyP2 += 100.00f * tweak;
+        }
+        if (tweak == 3)
+        {
+            //Endgame;
+            Debug.Log("fini");
+        }
+        else
+        {
+            player1.GetComponent<PlayableHero>().spawn = tableFloor[actualFloor].transform.GetChild(1);
+            player1.transform.position = player1.GetComponent<PlayableHero>().spawn.position;
+            player2.GetComponent<PlayableHero>().spawn = tableFloor[actualFloor].transform.GetChild(1);
+            player2.transform.position = player1.GetComponent<PlayableHero>().spawn.position;
+            Camera.main.transform.Translate(Vector3.up * height);
+            test = 3f;
+        }
+        
     }
 
-    public void DropWall()
-    {
-
-    }
 }
