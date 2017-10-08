@@ -33,25 +33,30 @@ public class BatManHero : PlayableHero {
                 othPlayer = players[0];
             }
 
-            GameObject web = Instantiate(bataCroutePrefab);
+            GameObject batCroutte = Instantiate(bataCroutePrefab);
 
             Vector3 thisPlayerPosition = transform.position;
             Vector3 velVector = othPlayer.transform.position - transform.position;
-            if (velVector.x >= 0)
+            /*if (velVector.x >= 0)
             {
-                thisPlayerPosition.x += 0.4f;
+                thisPlayerPosition.x += 1.0f;
             }
             else
             {
-                thisPlayerPosition.x -= 0.4f;
-            }
+                thisPlayerPosition.x -= 1.0f;
+            }*/
 
             int idSound = (int)Mathf.Round(Random.Range(0f, 1f));
             sounds[idSound].Play();
 
-            web.transform.position = thisPlayerPosition;
-            web.GetComponent<BataCroute>().SetSpawnerName(name);
-            web.GetComponent<Rigidbody2D>().velocity = velVector * bataCrouteSpeed;
+            batCroutte.transform.position = thisPlayerPosition;
+
+            batCroutte.GetComponent<BataCroute>().SetSpawnerName(name);
+            batCroutte.GetComponent<BataCroute>().SetOthPlayer(othPlayer);
+            batCroutte.GetComponent<BataCroute>().SetThisPlayer(gameObject);
+            batCroutte.GetComponent<BataCroute>().SetBataCroutteSpeed(bataCrouteSpeed);
+
+            batCroutte.GetComponent<Rigidbody2D>().velocity = velVector * bataCrouteSpeed;
 
             cptPowerInLevel++;
             powerUsed = true;

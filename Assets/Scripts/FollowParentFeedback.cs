@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SauceScript : MonoBehaviour
+public class FollowParentFeedback : MonoBehaviour
 {
 
     // Use this for initialization
@@ -14,7 +14,6 @@ public class SauceScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<SpriteMask>().sprite = GetComponentInParent<SpriteRenderer>().sprite;
         transform.position = transform.parent.position;
     }
 }

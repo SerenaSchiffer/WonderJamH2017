@@ -18,6 +18,7 @@ public class PlayableHero : MonoBehaviour {
     public LayerMask ground;
     public Transform spawn;
     public Animator myAnimator;
+    public GameObject feedbackSpecial;
 
     public CurrentPlayer currentPlayer;
 
@@ -54,6 +55,7 @@ public class PlayableHero : MonoBehaviour {
         reverseSound = sounds[4];
 
         currentState = new Idle(this); /*playerAnimator = gameObject.GetComponent<Animator>()*/;
+        feedbackSpecial = null;
     }
 
     public void Update()
@@ -314,6 +316,8 @@ public class Snared : PlayerState
     {
         Debug.Log("Snare Enter");
         myController.rgb.velocity = new Vector2(0, 0);
+        myController.feedbackSpecial = GameObject.Instantiate(Resources.Load("Prefabs/cheesyweb")) as GameObject;
+        myController.feedbackSpecial.transform.parent = myController.transform;
     }
     public override void Execute()
     {
@@ -326,6 +330,8 @@ public class Snared : PlayerState
         else
         {
             myController.ChangeState(new Idle(myController));
+            GameObject.Destroy(myController.feedbackSpecial);
+            myController.feedbackSpecial = null;
         }
     }
     public override void Exit()
@@ -342,6 +348,8 @@ public class Sauced : PlayerState
     {
         myController.rgb.velocity = new Vector2(myController.rgb.velocity.x * 2, myController.rgb.velocity.y);
         myController.GetSauceSound().Play(44000);
+        myController.feedbackSpecial = GameObject.Instantiate(Resources.Load("Prefabs/SpriteSauceMask")) as GameObject;
+        myController.feedbackSpecial.transform.parent = myController.transform;
     }
     public override void Execute()
     {
@@ -379,12 +387,13 @@ public class Sauced : PlayerState
         }
         else
         {
+            GameObject.Destroy(myController.feedbackSpecial);
+            myController.feedbackSpecial = null;
             myController.ChangeState(new Idle(myController));
         }
     }
     public override void Exit()
     {
-
     }
 
 }
@@ -423,6 +432,8 @@ public class Reversed : PlayerState
     public override void Enter()
     {
         myController.GetReverseSound().Play(44000);
+        myController.feedbackSpecial = GameObject.Instantiate(Resources.Load("Prefabs/Confused_Particles")) as GameObject;
+        myController.feedbackSpecial.transform.parent = myController.transform;
     }
     public override void Execute()
     {
@@ -453,7 +464,8 @@ public class Reversed : PlayerState
     }
     public override void Exit()
     {
-
+        GameObject.Destroy(myController.feedbackSpecial);
+        myController.feedbackSpecial = null;
     }
 
 }
@@ -533,6 +545,9 @@ public class Dying : PlayerState
     public override void Enter()
     {
         myController.GetDeathSound().Play();
+        GameObject.Destroy(myController.feedbackSpecial);
+        myController.feedbackSpecial = null;
+        debuffTimer = 0;
         deathParticles = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/Particle_Death"));
         deathParticles.transform.position = myController.transform.position;
         myController.GetComponent<BoxCollider2D>().enabled = false;

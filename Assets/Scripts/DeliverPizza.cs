@@ -19,11 +19,8 @@ public class DeliverPizza : MonoBehaviour {
         if (other.gameObject.tag == "Player")
         {
             GameObject generator = GameObject.FindGameObjectWithTag("Generator");
-            generator.GetComponent<GenerateMap>().GetUp();
-            if(other.GetComponent<PlayableHero>().currentPlayer == CurrentPlayer.Player1)
-            {
-                
-            }
+            generator.GetComponent<GenerateMap>().GetUp(other.GetComponent<PlayableHero>().currentPlayer);
+            
         }
     }
 }

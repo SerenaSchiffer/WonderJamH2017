@@ -30,7 +30,7 @@ public class Obst_Stapler : MonoBehaviour {
     {
         Vector3 vec;
         vec.x = pos.position.x;
-        vec.y = pos.position.y + 1;
+        vec.y = pos.position.y + 0.1f;
         vec.z = pos.position.z;
         Quaternion myRotation = pos.rotation;
         myRotation.w = 15;
