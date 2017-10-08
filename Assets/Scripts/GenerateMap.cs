@@ -16,10 +16,12 @@ public class GenerateMap : MonoBehaviour {
     public float targetImagey;
     float height;
     float tweak = 1;
+    AudioSource audio;
     // Use this for initialization
     void Start () {
         height = 2f * Camera.main.orthographicSize;
         tableFloor = new GameObject[towerSize];
+        audio = GetComponent<AudioSource>();
 
         for (int i = 0; i < towerSize;i++)
         {
@@ -137,6 +139,7 @@ public class GenerateMap : MonoBehaviour {
         }
         else
         {
+            audio.Play();
             player1.GetComponent<PlayableHero>().spawn = tableFloor[actualFloor].transform.GetChild(1);
             player1.transform.position = player1.GetComponent<PlayableHero>().spawn.position;
             player2.GetComponent<PlayableHero>().spawn = tableFloor[actualFloor].transform.GetChild(1);
