@@ -45,3 +45,27 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Tower
+    uniqueID: 3659424493
+    locked: 0
+  - name: Background
+    uniqueID: 2293464337
+    locked: 0
+  - name: HiddenObstacle
+    uniqueID: 103540841
+    locked: 0
+  - name: Obstacle
+    uniqueID: 4233213409
+    locked: 0
+  - name: Cape
+    uniqueID: 1382883953
+    locked: 0
+  - name: Body
+    uniqueID: 2502786631
+    locked: 0
+  - name: Mask
+    uniqueID: 1686376019
+    locked: 0
+  - name: HUD
+    uniqueID: 187136759
+    locked: 0
