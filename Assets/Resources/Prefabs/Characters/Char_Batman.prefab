@@ -597,7 +597,7 @@ MonoBehaviour:
   rgb: {fileID: 0}
   bataCroutePrefab: {fileID: 1763865994555692, guid: 050659ab8b7344a419cfa50a96b1731b,
     type: 2}
-  bataCrouteSpeed: 20
+  bataCrouteSpeed: 8
 --- !u!212 &212424762033250774
 SpriteRenderer:
   m_ObjectHideFlags: 1

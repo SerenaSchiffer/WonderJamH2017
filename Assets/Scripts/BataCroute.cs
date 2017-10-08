@@ -7,6 +7,10 @@ public class BataCroute : MonoBehaviour {
     private string spawnerName;
     private AudioSource sound;
 
+    GameObject othPlayer;
+    GameObject thisPlayer;
+    float BataCroutteSpeed;
+
 	// Use this for initialization
 	void Start () {
         sound = GetComponent<AudioSource>();
@@ -14,8 +18,9 @@ public class BataCroute : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        Vector3 velVector = othPlayer.transform.position - thisPlayer.transform.position;
+        GetComponent<Rigidbody2D>().velocity = velVector * BataCroutteSpeed;
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -39,4 +44,8 @@ public class BataCroute : MonoBehaviour {
     {
         this.spawnerName = spawnerName;
     }
+
+    public void SetOthPlayer(GameObject othPlayer) { this.othPlayer = othPlayer; }
+    public void SetThisPlayer(GameObject thisPlayer) { this.thisPlayer = thisPlayer; }
+    public void SetBataCroutteSpeed(float BataCroutteSpeed) { this.BataCroutteSpeed = BataCroutteSpeed; }
 }
