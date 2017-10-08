@@ -19,7 +19,8 @@ public class Obst_TriggerCeilingPiece : MonoBehaviour {
         if (other.gameObject.tag == "Player")
         {
             GetComponentInParent<Obst_FallingCeilingPiece>().StartFalling();
-            Destroy(gameObject);
+            if(!GetComponentInParent<Obst_FallingCeilingPiece>().getCanReappear())
+                Destroy(gameObject);
         }
     }
 }
