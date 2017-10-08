@@ -30,9 +30,9 @@ public class PlayableHero : MonoBehaviour {
     private AudioSource sauceSound;
     private AudioSource reverseSound;
 
-    protected int cptPowerInLevel;
-    protected float powerDelay;
-    protected bool powerUsed;
+    public int cptPowerInLevel;
+    public float powerDelay;
+    public bool powerUsed;
 
     public virtual void Awake()
     {
