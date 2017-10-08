@@ -369,6 +369,11 @@ Prefab:
       propertyPath: spawn
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114109310360996232, guid: 27d6b42e9497eab49b10f9f676cb56d3,
+        type: 2}
+      propertyPath: jumpHeight
+      value: 250
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 27d6b42e9497eab49b10f9f676cb56d3, type: 2}
   m_IsPrefabParent: 0
@@ -779,11 +784,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4820653269226838, guid: cc638e0f2a9bc1a45aaabd3cc70d7ac5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.57425976
+      value: 0.62337154
       objectReference: {fileID: 0}
     - target: {fileID: 4820653269226838, guid: cc638e0f2a9bc1a45aaabd3cc70d7ac5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.1272168
+      value: -1.1414161
       objectReference: {fileID: 0}
     - target: {fileID: 4820653269226838, guid: cc638e0f2a9bc1a45aaabd3cc70d7ac5, type: 2}
       propertyPath: m_LocalPosition.z
@@ -872,11 +877,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4071929600480766, guid: 173958f12a51cef4dbca909ec1e55447, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.4062081
+      value: 0.62337154
       objectReference: {fileID: 0}
     - target: {fileID: 4071929600480766, guid: 173958f12a51cef4dbca909ec1e55447, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.698032
+      value: -1.1414161
       objectReference: {fileID: 0}
     - target: {fileID: 4071929600480766, guid: 173958f12a51cef4dbca909ec1e55447, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1072,11 +1077,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4317642763917262, guid: 1d4f177cd95ee654eb3d0dc9ead6b284, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.67694116
+      value: 0.62337154
       objectReference: {fileID: 0}
     - target: {fileID: 4317642763917262, guid: 1d4f177cd95ee654eb3d0dc9ead6b284, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.1682009
+      value: -1.1414161
       objectReference: {fileID: 0}
     - target: {fileID: 4317642763917262, guid: 1d4f177cd95ee654eb3d0dc9ead6b284, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1148,11 +1153,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4410768379674184, guid: 19b0cd78c0cffdf48b33b23fd7e2cc6e, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.4062081
+      value: 0.62337154
       objectReference: {fileID: 0}
     - target: {fileID: 4410768379674184, guid: 19b0cd78c0cffdf48b33b23fd7e2cc6e, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.698032
+      value: -1.1414161
       objectReference: {fileID: 0}
     - target: {fileID: 4410768379674184, guid: 19b0cd78c0cffdf48b33b23fd7e2cc6e, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1182,6 +1187,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114828207583311554, guid: 19b0cd78c0cffdf48b33b23fd7e2cc6e,
+        type: 2}
+      propertyPath: shootingRate
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 19b0cd78c0cffdf48b33b23fd7e2cc6e, type: 2}
   m_IsPrefabParent: 0
@@ -1194,11 +1204,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4278533038438432, guid: 00896c21031c28a4e9448eb0d516b703, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.400939
+      value: 0.62337154
       objectReference: {fileID: 0}
     - target: {fileID: 4278533038438432, guid: 00896c21031c28a4e9448eb0d516b703, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.154761
+      value: -1.1414161
       objectReference: {fileID: 0}
     - target: {fileID: 4278533038438432, guid: 00896c21031c28a4e9448eb0d516b703, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1297,7 +1307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2135431039
 Transform:
   m_ObjectHideFlags: 0
