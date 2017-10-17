@@ -17,11 +17,18 @@ public class GenerateMap : MonoBehaviour {
     public float targetImagey;
     float height;
     float tweak = 1;
+    bool allRandom = false;
+    bool[] floors;
     AudioSource audio;
     // Use this for initialization
     void Start () {
-        actualFloor = 0;
         towerSize = CharacterSelect.nombreEtages;
+        if (towerSize < numberOfFloor)
+        {
+            allRandom = true;
+            floors = new bool[numberOfFloor];
+        }
+        actualFloor = 0;
         height = 2f * Camera.main.orthographicSize;
         tableFloor = new GameObject[towerSize];
         audio = GetComponent<AudioSource>();
@@ -30,6 +37,14 @@ public class GenerateMap : MonoBehaviour {
         for (int i = 0; i < towerSize;i++)
         {
             int randomFloor = Random.Range(1, numberOfFloor + 1);
+            if (allRandom)
+            {
+                while (floors[randomFloor - 1])
+                {
+                    randomFloor = Random.Range(1, numberOfFloor + 1);
+                }
+                floors[randomFloor - 1] = true;
+            }
             GameObject newFloor = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/Levels/Level" + randomFloor));
             newFloor.transform.position = new Vector3(baseX, baseY+i*height, 0);
             tableFloor[i] = newFloor;
